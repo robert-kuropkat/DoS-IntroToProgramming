@@ -30,7 +30,16 @@ text = "Game Over!"
 
 [node name="LivesText" type="Label" parent="." unique_id=37321681]
 offset_right = 40.0
-offset_bottom = 23.0
+offset_bottom = 50.0
+scale = Vector2(1.5, 1.5)
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+
+[node name="ScoreText" type="Label" parent="." unique_id=702722936]
+offset_top = 25.0
+offset_right = 40.0
+offset_bottom = 50.0
+scale = Vector2(1.5, 1.5)
+theme_override_colors/font_color = Color(1, 1, 0, 1)
 
 [node name="GameManager" type="Node2D" parent="." unique_id=1513393633]
 script = ExtResource("3_elf4b")

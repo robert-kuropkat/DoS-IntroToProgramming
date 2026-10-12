@@ -17,6 +17,11 @@ has_lost = false;
 /// @DnDArgument : "lives" "3"
 __dnd_lives = real(3);
 
+/// @DnDAction : YoYo Games.Instance Variables.Set_Score
+/// @DnDVersion : 1
+/// @DnDHash : 6D574B59
+__dnd_score = real(0);
+
 /// @DnDAction : YoYo Games.Audio.Play_Audio
 /// @DnDVersion : 1.1
 /// @DnDHash : 0210DB83

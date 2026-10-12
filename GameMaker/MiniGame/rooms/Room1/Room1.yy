@@ -6,8 +6,8 @@
   "inheritCreationOrder":false,
   "inheritLayers":false,
   "instanceCreationOrder":[
-    {"name":"inst_33E03BBE","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_6E7B1AF9","path":"rooms/Room1/Room1.yy",},
+    {"name":"inst_33E03BBE","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_3694DB3D","path":"rooms/Room1/Room1.yy",},
   ],
   "isDnd":false,

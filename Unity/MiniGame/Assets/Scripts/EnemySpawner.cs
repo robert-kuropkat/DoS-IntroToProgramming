@@ -5,7 +5,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private int enemyCount = 5;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         for (int enemyIndex = 0; enemyIndex < enemyCount; enemyIndex++)
@@ -16,11 +15,5 @@ public class EnemySpawner : MonoBehaviour
                  { newEnemy.GetComponent<SpriteRenderer>().color = new Color(0.8f, 0.1f, 0.2f);  } 
             else { newEnemy.GetComponent<SpriteRenderer>().color = new Color(0.95f, 0.4f, 0.5f); }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

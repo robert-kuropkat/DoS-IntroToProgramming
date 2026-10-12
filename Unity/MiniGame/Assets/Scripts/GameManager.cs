@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static bool hasWon           = false;
     public static bool hasLost          = false;
     public static int  lives            = 3;
+    public static int  score            = 0;
     public static GameManager instance; 
     public        AudioClip   lifeLostSound; 
     public        AudioClip   gameOverSound;
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     {
         enemiesRemaining = 5;
         lives            = 3;
+        score            = 0;
         hasWon           = false;
         hasLost          = false;
         AudioSource.PlayClipAtPoint(instance.gameStartSound, Camera.main.transform.position);
@@ -26,7 +28,7 @@ public class GameManager : MonoBehaviour
     public static void RegisterKill() 
     { 
         enemiesRemaining--;
-        //if (enemiesRemaining <= 0) hasWon = true; 
+        score += 10;
         if (enemiesRemaining <= 0 && !hasWon) 
         { 
             hasWon = true; 
@@ -37,7 +39,6 @@ public class GameManager : MonoBehaviour
     public static void RegisterEscape()
     {
         lives--;
-        //if (lives <= 0) hasLost = true;
         if (lives <= 0 && !hasLost) 
         { 
             hasLost = true; 
@@ -53,12 +54,10 @@ public class GameManager : MonoBehaviour
         bigStyle.fontSize         = 300;                            // Increase font size
         bigStyle.normal.textColor = Color.yellow;                   // Optional: change color
 
-        GUI.Label(new Rect(10, 10, 1400, 700), "Lives: " + lives, bigStyle);
         if (hasWon)  GUI.Label( new Rect(10, 10, 1400, 300)
                               , "You Win!"
                               , bigStyle
                               );
-//        if (hasLost) GUI.Label(new Rect(Screen.width / 2 - 50, 90, 1400, 700)
         if (hasLost) GUI.Label(new Rect(10, 10, 1400, 700)
                               , "Game Over"
                               , bigStyle
