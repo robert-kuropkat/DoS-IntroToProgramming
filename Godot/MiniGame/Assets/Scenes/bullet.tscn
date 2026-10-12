@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://v5at0cjfotta"]
+
+[ext_resource type="Texture2D" uid="uid://dgkyaf22vpwri" path="res://Assets/Sprites/bullet_yellow.png" id="1_ry04a"]
+[ext_resource type="Script" uid="uid://dn6fvnjstvp52" path="res://Assets/Scripts/bullet.gd" id="2_7gn42"]
+[ext_resource type="AudioStream" uid="uid://dcjcrjbnnxy0w" path="res://Assets/Audio/sfx_shoot.wav" id="3_tlll3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wpnyb"]
+size = Vector2(23, 57)
+
+[node name="Bullet" type="Sprite2D" unique_id=1114101870]
+texture = ExtResource("1_ry04a")
+script = ExtResource("2_7gn42")
+
+[node name="AudioStream_Fire" type="AudioStreamPlayer2D" parent="." unique_id=263444271]
+stream = ExtResource("3_tlll3")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1341412564]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1031243432]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_wpnyb")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

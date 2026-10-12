@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://f8ngsj7fqm6f"]
+
+[ext_resource type="Texture2D" uid="uid://bvlch4hcwmam1" path="res://Assets/Sprites/player_circle_blue.png" id="1_38rej"]
+[ext_resource type="Script" uid="uid://2a3msivk0v2m" path="res://Assets/Scripts/player.gd" id="2_38rej"]
+[ext_resource type="AudioStream" uid="uid://dfhh8wdk0ubxg" path="res://Assets/Audio/sfx_blip.wav" id="3_23lac"]
+
+[node name="Player" type="Sprite2D" unique_id=1518494520]
+texture = ExtResource("1_38rej")
+script = ExtResource("2_38rej")
+
+[node name="AudioStream_Walk" type="AudioStreamPlayer2D" parent="." unique_id=1789744776]
+stream = ExtResource("3_23lac")
