@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ddpaci5t704qi"]
+
+[ext_resource type="Texture2D" uid="uid://dsql3ditcq1u1" path="res://Assets/Sprites/enemy_invader_red.png" id="1_atlr2"]
+[ext_resource type="Script" uid="uid://bndsim4ab5jkh" path="res://Assets/Scripts/enemy.gd" id="2_e2b7p"]
+[ext_resource type="AudioStream" uid="uid://dyryff6d6j8ux" path="res://Assets/Audio/sfx_hit.wav" id="3_2g0jp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wpnyb"]
+size = Vector2(122, 91)
+
+[node name="Enemy" type="Sprite2D" unique_id=2065112265]
+texture = ExtResource("1_atlr2")
+script = ExtResource("2_e2b7p")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=297023527]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=89930849]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_wpnyb")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=760595305]
+stream = ExtResource("3_2g0jp")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

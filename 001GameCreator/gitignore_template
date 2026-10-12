@@ -1,0 +1,55 @@
+# 001 Game Creator – recommended .gitignore
+
+# ---- Project & editor temporaries ----
+# Autosaves, backups, locks (adjust names if you see different patterns in your project folder)
+*.bak
+*.backup
+*.tmp
+*.temp
+*~
+.DS_Store
+Thumbs.db
+
+# ---- 001-specific runtime & config files ----
+# These are usually per-user or regenerated at runtime and shouldn’t be versioned:
+# Save files and settings (per docs, stored under Documents\001\Games\[Game])
+# If your repo is inside the game folder, ignore these patterns:
+SETTINGS.INI
+SAVE*.1SV
+
+# Any local editor cache or logs you might see in the project dir
+*.log
+cache/
+Cache/
+__pycache__/
+.vs/
+.vscode/
+.idea/
+
+# ---- Build / export outputs (if you export from 001 into this repo) ----
+Build/
+build/
+Export/
+export/
+*.exe
+*.zip
+*.rar
+
+# ---- OS / IDE clutter ----
+# Windows
+$RECYCLE.BIN/
+desktop.ini
+
+# Visual Studio (if you attach C# or other code)
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+obj/
+bin/
+
+# ---- Optional: large assets you don’t want in Git ----
+# Uncomment and adapt if you store big binaries externally or use a separate asset repo
+# Assets/BigVideos/
+# Assets/BigAudio/
+

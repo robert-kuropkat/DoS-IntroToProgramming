@@ -1,0 +1,14 @@
+# Ignore Scratch project directory and its contents
+/scratch/
+
+# Common OS and IDE files you may not want in repo
+.DS_Store
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+*.log
+*.tmp
+*.cache
+
