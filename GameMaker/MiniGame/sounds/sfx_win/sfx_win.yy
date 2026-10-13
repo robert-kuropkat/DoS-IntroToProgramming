@@ -14,8 +14,8 @@
   "exportDir":"",
   "name":"sfx_win",
   "parent":{
-    "name":"MiniGame",
-    "path":"MiniGame.yyp",
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

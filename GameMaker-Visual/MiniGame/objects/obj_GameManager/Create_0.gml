@@ -2,12 +2,13 @@
 /// @DnDVersion : 1
 /// @DnDHash : 632A67A9
 /// @DnDInput : 3
+/// @DnDArgument : "expr" "true"
 /// @DnDArgument : "expr_1" "false"
 /// @DnDArgument : "expr_2" "false"
-/// @DnDArgument : "var" "enemies_remaining"
+/// @DnDArgument : "var" "game_active"
 /// @DnDArgument : "var_1" "has_won"
 /// @DnDArgument : "var_2" "has_lost"
-enemies_remaining = 0;
+game_active = true;
 has_won = false;
 has_lost = false;
 

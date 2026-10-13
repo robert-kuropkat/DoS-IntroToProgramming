@@ -9,8 +9,8 @@
   "name":"obj_spawner",
   "overriddenProperties":[],
   "parent":{
-    "name":"MiniGame",
-    "path":"MiniGame.yyp",
+    "name":"Objects",
+    "path":"folders/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

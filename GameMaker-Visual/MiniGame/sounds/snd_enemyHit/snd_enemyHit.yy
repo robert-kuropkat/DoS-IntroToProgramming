@@ -14,8 +14,8 @@
   "exportDir":"",
   "name":"snd_enemyHit",
   "parent":{
-    "name":"MiniGame-Visual",
-    "path":"MiniGame-Visual.yyp",
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

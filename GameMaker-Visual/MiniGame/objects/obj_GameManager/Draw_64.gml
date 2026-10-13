@@ -48,9 +48,8 @@ if(has_won){	/// @DnDAction : YoYo Games.Drawing.Draw_Value
 	/// @DnDParent : 0652D2C9
 	/// @DnDArgument : "x" "400"
 	/// @DnDArgument : "y" "50"
-	/// @DnDArgument : "caption" ""You win!  Enemies remaining: ""
-	/// @DnDArgument : "var" "enemies_remaining"
-	draw_text(400, 50, string("You win!  Enemies remaining: ") + string(enemies_remaining));}
+	/// @DnDArgument : "caption" ""You win!  Press 'R' to restart.""
+	draw_text(400, 50, string("You win!  Press 'R' to restart.") + "");}
 
 /// @DnDAction : YoYo Games.Common.If_Expression
 /// @DnDVersion : 1
@@ -62,6 +61,5 @@ if(has_lost){	/// @DnDAction : YoYo Games.Drawing.Draw_Value
 	/// @DnDParent : 6062FD39
 	/// @DnDArgument : "x" "400"
 	/// @DnDArgument : "y" "90"
-	/// @DnDArgument : "caption" ""You Lose!  Enemies remaining: ""
-	/// @DnDArgument : "var" "enemies_remaining"
-	draw_text(400, 90, string("You Lose!  Enemies remaining: ") + string(enemies_remaining));}
+	/// @DnDArgument : "caption" ""You Lose!  Press 'R' to restart.""
+	draw_text(400, 90, string("You Lose!  Press 'R' to restart.") + "");}

@@ -1,0 +1,1 @@
+if (!game_active && keyboard_check_pressed(ord("R"))) { start_game();}

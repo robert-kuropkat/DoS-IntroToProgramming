@@ -14,8 +14,8 @@
   "exportDir":"",
   "name":"snd_shoot",
   "parent":{
-    "name":"MiniGame-Visual",
-    "path":"MiniGame-Visual.yyp",
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

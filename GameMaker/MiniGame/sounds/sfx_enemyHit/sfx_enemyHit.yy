@@ -14,8 +14,8 @@
   "exportDir":"",
   "name":"sfx_enemyHit",
   "parent":{
-    "name":"MiniGame",
-    "path":"MiniGame.yyp",
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

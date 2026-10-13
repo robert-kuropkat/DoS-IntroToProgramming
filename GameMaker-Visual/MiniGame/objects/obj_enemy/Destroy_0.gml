@@ -1,15 +1,25 @@
 /// @DnDAction : YoYo Games.Common.If_Variable
 /// @DnDVersion : 1
 /// @DnDHash : 7FCFDC2B
-/// @DnDArgument : "var" "obj_GameManager.enemies_remaining"
+/// @DnDApplyTo : {obj_GameManager}
+/// @DnDArgument : "var" "enemies_remaining"
 /// @DnDArgument : "op" "3"
-if(obj_GameManager.enemies_remaining <= 0){	/// @DnDAction : YoYo Games.Common.Variable
+with(obj_GameManager) var l7FCFDC2B_0 = enemies_remaining <= 0;
+if(l7FCFDC2B_0){	/// @DnDAction : YoYo Games.Common.Variable
 	/// @DnDVersion : 1
 	/// @DnDHash : 78C2323D
+	/// @DnDInput : 2
+	/// @DnDApplyTo : {obj_GameManager}
 	/// @DnDParent : 7FCFDC2B
 	/// @DnDArgument : "expr" "true"
-	/// @DnDArgument : "var" "obj_GameManager.has_won"
-	obj_GameManager.has_won = true;
+	/// @DnDArgument : "expr_1" "false"
+	/// @DnDArgument : "var" "has_won"
+	/// @DnDArgument : "var_1" "game_active"
+	with(obj_GameManager) {
+	has_won = true;
+	game_active = false;
+	
+	}
 
 	/// @DnDAction : YoYo Games.Audio.Play_Audio
 	/// @DnDVersion : 1.1

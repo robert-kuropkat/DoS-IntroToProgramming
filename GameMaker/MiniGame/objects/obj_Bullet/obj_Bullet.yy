@@ -10,8 +10,8 @@
   "name":"obj_Bullet",
   "overriddenProperties":[],
   "parent":{
-    "name":"MiniGame",
-    "path":"MiniGame.yyp",
+    "name":"Objects",
+    "path":"folders/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

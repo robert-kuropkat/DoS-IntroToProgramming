@@ -1,3 +1,17 @@
+/// @DnDAction : YoYo Games.Common.If_Variable
+/// @DnDVersion : 1
+/// @DnDHash : 5FC9AA3E
+/// @DnDApplyTo : {obj_GameManager}
+/// @DnDArgument : "var" "game_active"
+/// @DnDArgument : "not" "1"
+/// @DnDArgument : "value" "true"
+with(obj_GameManager) var l5FC9AA3E_0 = game_active == true;
+if(!l5FC9AA3E_0){	/// @DnDAction : YoYo Games.Common.Exit_Event
+	/// @DnDVersion : 1
+	/// @DnDHash : 1D7A10D2
+	/// @DnDParent : 5FC9AA3E
+	exit;}
+
 /// @DnDAction : YoYo Games.Movement.Jump_To_Point
 /// @DnDVersion : 1
 /// @DnDHash : 1AC268A0
@@ -36,12 +50,16 @@ if(y > room_height){	/// @DnDAction : YoYo Games.Instances.Set_Instance_Var
 	if(l7EC42A59_0){	/// @DnDAction : YoYo Games.Common.Variable
 		/// @DnDVersion : 1
 		/// @DnDHash : 0F1F944A
+		/// @DnDInput : 2
 		/// @DnDApplyTo : {obj_GameManager}
 		/// @DnDParent : 7EC42A59
 		/// @DnDArgument : "expr" "true"
+		/// @DnDArgument : "expr_1" "false"
 		/// @DnDArgument : "var" "has_lost"
+		/// @DnDArgument : "var_1" "game_active"
 		with(obj_GameManager) {
 		has_lost = true;
+		game_active = false;
 		
 		}
 	
@@ -64,13 +82,6 @@ if(y > room_height){	/// @DnDAction : YoYo Games.Instances.Set_Instance_Var
 		/// @DnDArgument : "soundid" "sfx_lifelost"
 		/// @DnDSaveInfo : "soundid" "sfx_lifelost"
 		audio_play_sound(sfx_lifelost, 0, 0, 1.0, undefined, 1.0);}
-
-	/// @DnDAction : YoYo Games.Miscellaneous.Debug_Show_Message
-	/// @DnDVersion : 1
-	/// @DnDHash : 39382721
-	/// @DnDParent : 3E399392
-	/// @DnDArgument : "msg" ""Enemy Escaped!""
-	show_debug_message(string("Enemy Escaped!"));
 
 	/// @DnDAction : YoYo Games.Instances.Destroy_Instance
 	/// @DnDVersion : 1
