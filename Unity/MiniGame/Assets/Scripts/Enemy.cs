@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.gameActive) return;
         transform.Translate(Vector3.down * enemySpeed * Time.deltaTime); 
         if (transform.position.y < -6f) 
         {
