@@ -5,6 +5,13 @@ var enemies_remaining := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready(): 
+	return
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+	
+func spawn_enemies(): 
 	for enemy_count in range(5): 
 		var new_enemy := enemy_scene.instantiate() 
 		enemies_remaining += 1
@@ -17,10 +24,6 @@ func _ready():
 		new_enemy.escaped.connect($GameManager.on_enemy_escaped)
 		add_child(new_enemy)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-	
 #func _on_enemy_destroyed(): 
 	#enemies_remaining -= 1 
 	#if enemies_remaining <= 0: 

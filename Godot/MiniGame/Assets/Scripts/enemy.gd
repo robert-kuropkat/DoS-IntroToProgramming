@@ -11,6 +11,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not get_node("../GameManager").game_active: 
+		return
 	position.y += enemy_speed * delta 
 	if position.y > 700: 
 		escaped.emit()

@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wpnyb"]
 size = Vector2(122, 91)
 
-[node name="Enemy" type="Sprite2D" unique_id=2065112265]
+[node name="Enemy" type="Sprite2D" unique_id=2065112265 groups=["enemies"]]
 texture = ExtResource("1_atlr2")
 script = ExtResource("2_e2b7p")
 
