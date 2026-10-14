@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 760" width="1000" height="760">
+  <!-- Arrowheads are manually-rotated triangles (see diagram_game_loop.svg for why:
+       this renderer doesn't compute SVG marker orient="auto" correctly on curves). -->
+  <rect x="0" y="0" width="1000" height="760" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="27" font-weight="bold" fill="#1c4a86">Activity Diagram: Spawning a Row of Enemies</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">the same four steps repeat behind every engine's for-loop or Repeat block in Level 1</text>
+
+  <!-- start node -->
+  <circle cx="500" cy="95" r="11" fill="#16305c" stroke="#c9a227" stroke-width="2"/>
+  <text x="461" y="100" text-anchor="end" font-family="Arial" font-size="13" fill="#555555" font-style="italic">start</text>
+  <path d="M500,106 L500,142" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,142) rotate(90)"/>
+
+  <!-- box: set i = 0 -->
+  <rect x="390" y="142" width="220" height="70" rx="14" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="500" y="172" text-anchor="middle" font-family="Arial" font-size="17" font-weight="bold" fill="#f4f0e6">SET i = 0</text>
+  <text x="500" y="194" text-anchor="middle" font-family="Arial" font-size="13" fill="#cfe0f4">the loop counter starts at zero</text>
+
+  <path d="M500,212 L500,240" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,240) rotate(90)"/>
+
+  <!-- decision diamond -->
+  <polygon points="500,245 595,300 500,355 405,300" fill="#e8c25a" stroke="#a97e1f" stroke-width="3"/>
+  <text x="500" y="296" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#16305c">MORE ENEMIES</text>
+  <text x="500" y="313" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#16305c">TO CREATE?</text>
+
+  <!-- yes -> create enemy -->
+  <path d="M500,355 L500,395" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,395) rotate(90)"/>
+  <text x="516" y="379" font-family="Arial" font-size="13" fill="#555555" font-style="italic">yes</text>
+
+  <rect x="350" y="397" width="300" height="70" rx="12" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="500" y="427" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#f4f0e6">CREATE ONE ENEMY</text>
+  <text x="500" y="449" text-anchor="middle" font-family="Arial" font-size="13" fill="#cfe0f4">positioned using i</text>
+
+  <path d="M500,467 L500,505" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,505) rotate(90)"/>
+
+  <rect x="370" y="507" width="260" height="70" rx="12" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="500" y="537" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#f4f0e6">ADD 1 TO i</text>
+  <text x="500" y="559" text-anchor="middle" font-family="Arial" font-size="13" fill="#cfe0f4">(i = i + 1)</text>
+
+  <!-- loop-back into the diamond -->
+  <path d="M630,542 Q800,542 800,300 Q800,210 605,210" fill="none" stroke="#c99a2e" stroke-width="3" stroke-dasharray="2,7"/>
+  <path d="M0,0 L-11,-4.5 L-11,4.5 Z" fill="#c99a2e" transform="translate(605,210) rotate(180)"/>
+  <text x="815" y="376" font-family="Arial" font-size="13" fill="#888888" font-style="italic" transform="rotate(90 815 376)">loop back until i reaches the target count</text>
+
+  <!-- no branch: exits diamond, terminates the loop -->
+  <path d="M405,300 L260,300 L260,468" fill="none" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(260,468) rotate(90)"/>
+  <text x="332" y="288" text-anchor="middle" font-family="Arial" font-size="13" fill="#555555" font-style="italic">no - after 5 loops</text>
+
+  <rect x="100" y="470" width="260" height="80" rx="12" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="230" y="504" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">ALL 5 ENEMIES EXIST</text>
+  <text x="230" y="528" text-anchor="middle" font-family="Arial" font-size="13" fill="#cfe0f4">each one independent of the others</text>
+
+  <path d="M230,550 L230,590" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(230,590) rotate(90)"/>
+
+  <!-- end node (UML activity final node) -->
+  <circle cx="230" cy="606" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="230" cy="606" r="7" fill="#16305c"/>
+  <text x="252" y="611" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end</text>
+
+  <text x="500" y="690" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">Every engine's Level 1 solution runs this same shape - a counter, a repeat check, one creation step, and an increment -</text>
+  <text x="500" y="712" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">even though the exact blocks or code syntax differ. Tracing a spawn bug means finding which of these four steps broke.</text>
+</svg>

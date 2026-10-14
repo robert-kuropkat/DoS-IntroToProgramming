@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700">
+  <rect x="0" y="0" width="1000" height="700" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="bold" fill="#1c4a86">GML Visual: Level 1 Score and Continuous HUD</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">obj_bullet's Collision event and obj_gamemanager's Draw GUI event - the block-for-block equivalent of the Level 1 code</text>
+
+  <text x="500" y="94" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">obj_bullet's Collision event with obj_enemy - alongside the EXISTING enemies_remaining block</text>
+
+  <rect x="230" y="106" width="540" height="86" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="128" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">SET SCORE</text>
+  <text x="500" y="148" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Target: obj_gamemanager   Value: 10</text>
+  <text x="500" y="166" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Relative: checked</text>
+  <text x="500" y="184" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4" font-style="italic">purpose-built block - stores score on the instance (__dnd_score), not a global</text>
+
+  <path d="M500,192 L500,220" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,220) rotate(90)"/>
+  <circle cx="500" cy="236" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="500" cy="236" r="7" fill="#16305c"/>
+  <text x="522" y="241" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end (existing enemies_remaining block runs alongside this)</text>
+
+  <text x="500" y="290" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">- - - a separate event, shown stacked here for comparison - - -</text>
+
+  <text x="500" y="318" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">obj_gamemanager's Draw GUI event - two new blocks near the top, before the has_won/has_lost checks</text>
+
+  <rect x="270" y="330" width="460" height="80" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="358" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">DRAW INSTANCE SCORE</text>
+  <text x="500" y="380" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" fill="#cfe0f4">Caption: "Score: "   X: 20   Y: 20</text>
+  <text x="500" y="398" text-anchor="middle" font-family="Arial" font-size="11" fill="#cfe0f4" font-style="italic">draws the instance's __dnd_score value after the caption</text>
+
+  <path d="M500,410 L500,438" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,438) rotate(90)"/>
+
+  <rect x="270" y="440" width="460" height="80" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="468" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">DRAW INSTANCE LIVES</text>
+  <text x="500" y="490" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Caption: "Lives: "  Sprite: spr_player  Row  X: 20  Y: 50</text>
+  <text x="500" y="508" text-anchor="middle" font-family="Arial" font-size="11" fill="#cfe0f4" font-style="italic">one small ship per life; runs every frame, unconditional - no If Variable around it</text>
+
+  <path d="M500,520 L500,548" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,548) rotate(90)"/>
+  <circle cx="500" cy="564" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="500" cy="564" r="7" fill="#16305c"/>
+  <text x="522" y="569" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end (existing has_won/has_lost blocks continue below, unaffected)</text>
+
+  <text x="500" y="630" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">Same object, same two events, whether Lesson 8's lose check was built in Code or Visual -</text>
+  <text x="500" y="652" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">obj_gamemanager now owns score the exact same way it already owns enemies_remaining and lives.</text>
+
+  <text x="500" y="670" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="13" fill="#a97e1f" font-style="italic">VIDEO GAME CREATION</text>
+</svg>

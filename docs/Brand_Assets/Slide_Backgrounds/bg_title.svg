@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <linearGradient id="titleFade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1c4a86"/>
+      <stop offset="1" stop-color="#0f2c52"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.4" r="0.7">
+      <stop offset="0" stop-color="#3f7fc0" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#3f7fc0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#titleFade)"/>
+  <rect width="1280" height="720" fill="url(#glow)"/>
+
+  <!-- faint large pixel-grid, scattered -->
+  <g fill="#e8c25a" opacity="0.08">
+    <g id="pxrowT">
+      <rect x="0" y="0" width="22" height="22"/>
+      <rect x="30" y="0" width="22" height="22"/>
+      <rect x="0" y="30" width="22" height="22"/>
+      <rect x="30" y="30" width="22" height="22"/>
+    </g>
+    <use href="#pxrowT" transform="translate(60,60)"/>
+    <use href="#pxrowT" transform="translate(1150,80)"/>
+    <use href="#pxrowT" transform="translate(1180,580)"/>
+    <use href="#pxrowT" transform="translate(40,600)"/>
+  </g>
+
+  <!-- thin gold accent lines top & bottom -->
+  <rect x="0" y="0" width="1280" height="10" fill="#c99a2e"/>
+  <rect x="0" y="710" width="1280" height="10" fill="#c99a2e"/>
+
+  <!-- faint laurel silhouette accents, lower corners -->
+  <g fill="#e8c25a" opacity="0.12">
+    <ellipse cx="60" cy="640" rx="18" ry="8" transform="rotate(-20 60 640)"/>
+    <ellipse cx="90" cy="660" rx="18" ry="8" transform="rotate(-5 90 660)"/>
+    <ellipse cx="125" cy="670" rx="18" ry="8" transform="rotate(10 125 670)"/>
+    <ellipse cx="1220" cy="640" rx="18" ry="8" transform="rotate(20 1220 640)"/>
+    <ellipse cx="1190" cy="660" rx="18" ry="8" transform="rotate(5 1190 660)"/>
+    <ellipse cx="1155" cy="670" rx="18" ry="8" transform="rotate(-10 1155 670)"/>
+  </g>
+</svg>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 850" width="1000" height="850">
+  <rect x="0" y="0" width="1000" height="850" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="25" font-weight="bold" fill="#1c4a86">GML Visual: Level 1 Movement and Escape Cleanup</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">obj_enemy's Step event - the block-for-block equivalent of the Level 1 code</text>
+
+  <rect x="330" y="92" width="340" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="127" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">JUMP TO POINT</text>
+  <text x="500" y="146" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#cfe0f4">X: 0 (Relative)   Y: enemy_speed (Relative)</text>
+
+  <path d="M500,152 L500,182" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,182) rotate(90)"/>
+
+  <rect x="290" y="184" width="420" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="219" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">IF VARIABLE</text>
+  <text x="500" y="239" text-anchor="middle" font-family="Consolas, monospace" font-size="13" fill="#cfe0f4">y &gt; room_height</text>
+
+  <path d="M500,244 L500,274" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,274) rotate(90)"/>
+  <text x="516" y="264" font-family="Arial" font-size="13" fill="#555555" font-style="italic">true</text>
+
+  <rect x="110" y="276" width="780" height="120" rx="16" fill="none" stroke="#16305c" stroke-width="2.5" stroke-dasharray="9,6"/>
+  <rect x="132" y="268" width="150" height="34" rx="8" fill="#16305c"/>
+  <text x="207" y="291" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">IF - true branch</text>
+
+  <rect x="290" y="316" width="420" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="341" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">INSTANCE - DESTROY INSTANCE</text>
+  <text x="500" y="360" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#cfe0f4">Instance: self</text>
+
+  <path d="M500,396 L500,432" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,432) rotate(90)"/>
+  <circle cx="500" cy="448" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="500" cy="448" r="7" fill="#16305c"/>
+  <text x="522" y="453" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end (escaped - no counter touched here)</text>
+
+  <text x="500" y="520" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">Notice what's missing: nothing in this Step event ever references enemies_remaining. That variable now only</text>
+  <text x="500" y="542" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">changes in obj_bullet's Collision event (below), on obj_gamemanager - never here, on the escape path.</text>
+
+  <!-- second block: separate collision event -->
+  <rect x="290" y="590" width="420" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="615" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">obj_bullet's Collision event with obj_enemy</text>
+  <text x="500" y="634" text-anchor="middle" font-family="Arial" font-size="11.5" fill="#cfe0f4" font-style="italic">a completely separate event - not part of the Step event above</text>
+
+  <path d="M500,650 L500,680" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,680) rotate(90)"/>
+
+  <rect x="270" y="682" width="460" height="80" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="710" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">SET VARIABLE</text>
+  <text x="500" y="732" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" fill="#cfe0f4">obj_gamemanager.enemies_remaining -= 1</text>
+  <text x="500" y="750" text-anchor="middle" font-family="Arial" font-size="11" fill="#cfe0f4" font-style="italic">then Instance - Destroy Instance (self and other)</text>
+
+  <path d="M500,762 L500,790" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,790) rotate(90)"/>
+  <circle cx="500" cy="806" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="500" cy="806" r="7" fill="#16305c"/>
+  <text x="522" y="811" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end (hit - counter decremented)</text>
+
+  <text x="500" y="580" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">- - - two separate events, shown stacked here for comparison - - -</text>
+</svg>

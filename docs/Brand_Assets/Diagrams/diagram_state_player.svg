@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620">
+  <!-- Arrowheads are manually-rotated triangles, same technique as the other diagrams. -->
+  <rect x="0" y="0" width="1000" height="620" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="27" font-weight="bold" fill="#1c4a86">State Diagram: The Player Character</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">the different "modes" your character can be in, and what switches it between them</text>
+
+  <!-- initial state marker -->
+  <circle cx="280" cy="130" r="11" fill="#16305c" stroke="#c9a227" stroke-width="2"/>
+  <path d="M280,141 L280,238" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(280,238) rotate(90)"/>
+
+  <!-- Idle state -->
+  <rect x="170" y="240" width="220" height="110" rx="55" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="280" y="302" text-anchor="middle" font-family="Arial" font-size="22" font-weight="bold" fill="#f4f0e6">Idle</text>
+
+  <!-- Moving state -->
+  <rect x="590" y="240" width="220" height="110" rx="55" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="700" y="302" text-anchor="middle" font-family="Arial" font-size="22" font-weight="bold" fill="#f4f0e6">Moving</text>
+
+  <!-- Idle -> Moving (top arc) -->
+  <path d="M 390,265 Q 500,175 590,265" fill="none" stroke="#c99a2e" stroke-width="4"/>
+  <path d="M0,0 L-11,-4.5 L-11,4.5 Z" fill="#c99a2e" transform="translate(590,265) rotate(45)"/>
+  <text x="500" y="165" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#16305c">Right Arrow pressed</text>
+
+  <!-- Moving -> Idle (bottom arc) -->
+  <path d="M 590,335 Q 500,435 390,335" fill="none" stroke="#999999" stroke-width="3" stroke-dasharray="2,7"/>
+  <path d="M0,0 L-11,-4.5 L-11,4.5 Z" fill="#999999" transform="translate(390,335) rotate(-140.71)"/>
+  <text x="500" y="450" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#666666">Right Arrow released</text>
+
+  <text x="280" y="390" text-anchor="middle" font-family="Arial" font-size="13.5" fill="#555555" font-style="italic">standing still</text>
+  <text x="700" y="390" text-anchor="middle" font-family="Arial" font-size="13.5" fill="#555555" font-style="italic">x += speed each frame</text>
+
+  <text x="500" y="545" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">A game character can usually only be in one state at a time. Level 2 of this week's exercise</text>
+  <text x="500" y="567" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">really has 5 states like this - Idle plus one Moving state per direction.</text>
+</svg>

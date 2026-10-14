@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 780" width="1000" height="780">
+  <!-- Arrowheads are manually-rotated triangles, same technique as the other diagrams. -->
+  <rect x="0" y="0" width="1000" height="780" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="bold" fill="#1c4a86">Activity Diagram: Two Ways an Enemy Stops Existing</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">escaping off-screen and getting shot both destroy the enemy - only one of them should count as a kill</text>
+
+  <!-- start node -->
+  <circle cx="500" cy="102" r="11" fill="#16305c" stroke="#c9a227" stroke-width="2"/>
+  <text x="461" y="107" text-anchor="end" font-family="Arial" font-size="13" fill="#555555" font-style="italic">start (each frame)</text>
+  <path d="M500,113 L500,142" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,142) rotate(90)"/>
+
+  <rect x="360" y="144" width="280" height="60" rx="12" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="500" y="180" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#f4f0e6">Move enemy downward</text>
+
+  <path d="M500,204 L500,234" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,234) rotate(90)"/>
+
+  <!-- decision diamond 1: past bottom? -->
+  <polygon points="500,238 610,298 500,358 390,298" fill="#e8c25a" stroke="#a97e1f" stroke-width="3"/>
+  <text x="500" y="292" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#16305c">PAST BOTTOM OF</text>
+  <text x="500" y="309" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#16305c">SCREEN?</text>
+
+  <!-- yes -> escape branch (left) -->
+  <path d="M390,298 Q280,298 220,298" fill="none" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(220,298) rotate(180)"/>
+  <text x="330" y="286" text-anchor="middle" font-family="Arial" font-size="13" fill="#555555" font-style="italic">yes</text>
+
+  <rect x="30" y="330" width="270" height="80" rx="12" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="165" y="362" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">Destroy enemy</text>
+  <text x="165" y="384" text-anchor="middle" font-family="Arial" font-size="12.5" fill="#cfe0f4">(escape - no counter change)</text>
+
+  <path d="M220,298 L165,298 L165,330" fill="none" stroke="#16305c" stroke-width="4"/>
+
+  <path d="M165,410 L165,450" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(165,450) rotate(90)"/>
+  <circle cx="165" cy="466" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="165" cy="466" r="7" fill="#16305c"/>
+  <text x="187" y="471" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end (escaped)</text>
+
+  <!-- no -> hit check (down from diamond 1) -->
+  <path d="M500,358 L500,392" stroke="#999999" stroke-width="3" stroke-dasharray="2,7"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#999999" transform="translate(500,392) rotate(90)"/>
+  <text x="516" y="378" font-family="Arial" font-size="13" fill="#666666" font-style="italic">no</text>
+
+  <!-- decision diamond 2: hit by bullet? -->
+  <polygon points="500,396 610,456 500,516 390,456" fill="#e8c25a" stroke="#a97e1f" stroke-width="3"/>
+  <text x="500" y="450" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#16305c">HIT BY BULLET</text>
+  <text x="500" y="467" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#16305c">THIS FRAME?</text>
+
+  <!-- yes -> hit branch (right) -->
+  <path d="M610,456 Q720,456 780,456" fill="none" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(780,456) rotate(0)"/>
+  <text x="670" y="444" text-anchor="middle" font-family="Arial" font-size="13" fill="#555555" font-style="italic">yes</text>
+
+  <rect x="650" y="330" width="270" height="80" rx="12" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="785" y="358" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">GameManager: decrement</text>
+  <text x="785" y="378" text-anchor="middle" font-family="Consolas, monospace" font-size="13" fill="#cfe0f4">enemies_remaining</text>
+
+  <path d="M785,456 L785,410" fill="none" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(785,410) rotate(-90)"/>
+
+  <rect x="650" y="486" width="270" height="70" rx="12" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="785" y="527" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">Destroy enemy (hit)</text>
+
+  <path d="M785,410 L785,486" fill="none" stroke="none"/>
+  <path d="M785,556 L785,592" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(785,592) rotate(90)"/>
+  <circle cx="785" cy="608" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="785" cy="608" r="7" fill="#16305c"/>
+  <text x="807" y="613" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end (defeated)</text>
+
+  <!-- no -> loop back to Move -->
+  <path d="M390,456 Q 230,456 230,175 Q 230,175 358,175" fill="none" stroke="#999999" stroke-width="3" stroke-dasharray="2,7"/>
+  <path d="M0,0 L-11,-4.5 L-11,4.5 Z" fill="#999999" transform="translate(358,175) rotate(0)"/>
+  <text x="240" y="320" text-anchor="middle" font-family="Arial" font-size="13" fill="#666666" font-style="italic" transform="rotate(-90 240 320)">no - next frame</text>
+
+  <text x="500" y="660" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">These two checks look similar - both end with "the enemy is gone" - but only the hit check is allowed to</text>
+  <text x="500" y="682" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">touch enemies_remaining. Attaching the counter to a generic "was destroyed" hook instead of this specific</text>
+  <text x="500" y="704" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">hit check is exactly the bug GameMaker and 001 Game Creator have to fix this lesson.</text>
+</svg>

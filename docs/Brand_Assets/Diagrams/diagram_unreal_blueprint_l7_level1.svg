@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" width="1000" height="720">
+  <rect x="0" y="0" width="1000" height="720" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="bold" fill="#1c4a86">Unreal Blueprint: Level 1 Movement and Escape Cleanup</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">BP_Enemy's Event Graph - the node-for-node equivalent of the Level 1 code</text>
+
+  <rect x="350" y="92" width="300" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="122" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">EVENT TICK</text>
+  <text x="500" y="141" text-anchor="middle" font-family="Arial" font-size="11" fill="#cfe0f4">(event node - fires every frame)</text>
+
+  <path d="M500,152 L500,182" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,182) rotate(90)"/>
+
+  <!-- ADD ACTOR WORLD OFFSET node -->
+  <rect x="200" y="184" width="600" height="100" rx="10" fill="#ffffff" stroke="#16305c" stroke-width="2.5"/>
+  <rect x="200" y="184" width="600" height="34" rx="8" fill="#16305c"/>
+  <text x="500" y="207" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">ADD ACTOR WORLD OFFSET</text>
+  <polygon points="200,226 190,232 200,238" fill="#16305c"/>
+  <polygon points="800,226 810,232 800,238" fill="#16305c"/>
+
+  <text x="220" y="244" font-family="Arial" font-size="12.5" font-weight="bold" fill="#16305c">Delta Location (split):</text>
+  <text x="220" y="262" font-family="Consolas, monospace" font-size="12" fill="#333333">X: 0   Y: -EnemySpeed * DeltaSeconds   Z: 0</text>
+  <text x="220" y="278" font-family="Arial" font-size="11" fill="#a97e1f" font-style="italic">Split Struct Pin used to reach Y alone - same step Lessons 2/3 needed</text>
+
+  <path d="M500,284 L500,314" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,314) rotate(90)"/>
+
+  <!-- BRANCH node -->
+  <rect x="290" y="316" width="420" height="90" rx="10" fill="#ffffff" stroke="#16305c" stroke-width="2.5"/>
+  <rect x="290" y="316" width="420" height="34" rx="8" fill="#16305c"/>
+  <text x="500" y="339" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">BRANCH</text>
+  <polygon points="290,358 280,364 290,370" fill="#16305c"/>
+  <text x="365" y="384" text-anchor="end" font-family="Arial" font-size="13" font-weight="bold" fill="#16305c">Condition:</text>
+  <text x="375" y="384" font-family="Consolas, monospace" font-size="12" fill="#333333">GetActorLocation().Y &lt; -400</text>
+
+  <path d="M400,406 L400,434" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(400,434) rotate(90)"/>
+  <text x="416" y="426" font-family="Arial" font-size="13" fill="#555555" font-style="italic">True</text>
+
+  <rect x="270" y="436" width="260" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="400" y="462" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">DESTROY ACTOR</text>
+  <text x="400" y="481" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#cfe0f4">Target: self</text>
+
+  <path d="M400,496 L400,524" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(400,524) rotate(90)"/>
+  <circle cx="400" cy="540" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="400" cy="540" r="7" fill="#16305c"/>
+  <text x="422" y="545" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end (escaped - no dispatcher call)</text>
+
+  <text x="500" y="608" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">Compare this graph to the overlap event's successful-Cast branch in the Key: only that separate event ever</text>
+  <text x="500" y="630" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">calls OnEnemyDestroyed, which now feeds BP_GameManager's HandleEnemyDestroyed event - Event Tick above never touches it.</text>
+
+  <text x="500" y="676" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">BP_GameManager was introduced in Lesson 6 - a placed Actor the Level Blueprint holds a reference to, not the Level Blueprint itself.</text>
+</svg>

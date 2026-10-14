@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 760" width="1000" height="760">
+  <!-- Arrowheads are manually-rotated triangles (see diagram_game_loop.svg for why). -->
+  <rect x="0" y="0" width="1000" height="760" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="bold" fill="#1c4a86">GML Visual: Level 1 Spawn Loop</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">obj_spawner's Create event - the block-for-block equivalent of the Level 1 code</text>
+
+  <rect x="330" y="92" width="340" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="117" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">SET VARIABLE</text>
+  <text x="500" y="138" text-anchor="middle" font-family="Consolas, monospace" font-size="13" fill="#cfe0f4">enemy_count = 0</text>
+
+  <path d="M500,152 L500,182" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,182) rotate(90)"/>
+
+  <rect x="110" y="180" width="780" height="270" rx="16" fill="none" stroke="#16305c" stroke-width="2.5" stroke-dasharray="9,6"/>
+  <rect x="132" y="172" width="230" height="34" rx="8" fill="#16305c"/>
+  <text x="247" y="195" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">REPEAT - Times: 5</text>
+
+  <rect x="230" y="222" width="540" height="86" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="253" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">INSTANCE - CREATE INSTANCE</text>
+  <text x="500" y="278" text-anchor="middle" font-family="Consolas, monospace" font-size="13" fill="#cfe0f4">Object: obj_enemy   Layer: "Instances"</text>
+  <text x="500" y="298" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" fill="#cfe0f4">X: 80 + (enemy_count * 96)   Y: 80</text>
+
+  <path d="M500,308 L500,334" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,334) rotate(90)"/>
+
+  <rect x="300" y="336" width="400" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="361" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">SET VARIABLE</text>
+  <text x="500" y="382" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" fill="#cfe0f4">enemy_count = enemy_count + 1</text>
+
+  <path d="M700,366 Q940,366 940,265 Q940,265 772,265" fill="none" stroke="#c99a2e" stroke-width="3" stroke-dasharray="2,7"/>
+  <path d="M0,0 L-11,-4.5 L-11,4.5 Z" fill="#c99a2e" transform="translate(772,265) rotate(180)"/>
+  <text x="965" y="330" font-family="Arial" font-size="13" fill="#888888" font-style="italic" transform="rotate(90 965 330)">back to the top of Repeat, 5 times total</text>
+
+  <path d="M500,450 L500,486" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,486) rotate(90)"/>
+
+  <rect x="290" y="488" width="420" height="80" rx="12" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="500" y="520" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">5 ENEMIES NOW EXIST</text>
+  <text x="500" y="542" text-anchor="middle" font-family="Arial" font-size="13" fill="#cfe0f4">positioned in a row, each independent</text>
+
+  <path d="M500,568 L500,598" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,598) rotate(90)"/>
+  <circle cx="500" cy="614" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="500" cy="614" r="7" fill="#16305c"/>
+  <text x="522" y="619" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end</text>
+
+  <text x="500" y="668" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">Five blocks, three of them wired inside one Repeat - the exact same shape as the Activity Diagram above,</text>
+  <text x="500" y="690" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">just built with GML Visual's own blocks instead of typed code.</text>
+</svg>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1040" width="1000" height="1040">
+  <rect x="0" y="0" width="1000" height="1040" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="bold" fill="#1c4a86">Unreal Blueprint: Level 1 Score and the WBP_HUD Widget</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">WBP_HUD's Event Graph and BP_GameManager's existing BeginPlay and HandleEnemyDestroyed</text>
+
+  <text x="500" y="94" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">WBP_HUD's Event Graph - a new Custom Event, called by push from BP_GameManager</text>
+
+  <rect x="310" y="106" width="380" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="132" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">CUSTOM EVENT</text>
+  <text x="500" y="152" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">UpdateHUD(Score: Integer, Lives: Integer)</text>
+
+  <path d="M500,166 L500,194" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,194) rotate(90)"/>
+
+  <rect x="260" y="196" width="480" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="222" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">SET TEXT</text>
+  <text x="500" y="242" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">ScoreText, "Score: " + ToString(Score)</text>
+
+  <path d="M500,256 L500,284" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,284) rotate(90)"/>
+
+  <rect x="260" y="286" width="480" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="312" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">SET TEXT</text>
+  <text x="500" y="332" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">LivesText, "Lives: " + ToString(Lives)</text>
+
+  <path d="M500,346 L500,374" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,374) rotate(90)"/>
+  <circle cx="500" cy="390" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="500" cy="390" r="7" fill="#16305c"/>
+  <text x="522" y="395" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end (both Text Blocks updated)</text>
+
+  <text x="500" y="448" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">BP_GameManager's Event Graph - BeginPlay (new) - the SAME placed Actor that owns EnemiesRemaining and Lives</text>
+
+  <rect x="260" y="460" width="480" height="56" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="494" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">EVENT BEGINPLAY</text>
+
+  <path d="M500,516 L500,544" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,544) rotate(90)"/>
+
+  <rect x="230" y="546" width="540" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="572" text-anchor="middle" font-family="Arial" font-size="13.5" font-weight="bold" fill="#f4f0e6">CREATE WIDGET -&gt; ADD TO VIEWPORT -&gt; SET HUDWIDGET</text>
+  <text x="500" y="592" text-anchor="middle" font-family="Consolas, monospace" font-size="11" fill="#cfe0f4">Class = WBP_HUD</text>
+
+  <path d="M500,606 L500,634" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,634) rotate(90)"/>
+
+  <rect x="260" y="636" width="480" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="662" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">CALL UPDATEHUD</text>
+  <text x="500" y="682" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">HUDWidget, Score, Lives</text>
+
+  <path d="M500,696 L500,724" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,724) rotate(90)"/>
+  <circle cx="500" cy="740" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="500" cy="740" r="7" fill="#16305c"/>
+  <text x="522" y="745" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end (HUD visible with correct starting values)</text>
+
+  <text x="500" y="800" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">BP_GameManager's existing HandleEnemyDestroyed - revised to also push an HUD update</text>
+
+  <rect x="230" y="812" width="540" height="100" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="838" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">CUSTOM EVENT HandleEnemyDestroyed (revised)</text>
+  <text x="500" y="858" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">EnemiesRemaining = EnemiesRemaining - 1</text>
+  <text x="500" y="876" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Score = Score + 10</text>
+  <text x="500" y="896" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Call UpdateHUD(HUDWidget, Score, Lives)</text>
+
+  <text x="500" y="950" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">Score, HUDWidget, and the widget setup all live on BP_GameManager, never the Level Blueprint -</text>
+  <text x="500" y="972" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">the same one-dedicated-manager pattern this course has used since Lesson 6.</text>
+
+  <text x="500" y="1010" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="13" fill="#a97e1f" font-style="italic">VIDEO GAME CREATION</text>
+</svg>

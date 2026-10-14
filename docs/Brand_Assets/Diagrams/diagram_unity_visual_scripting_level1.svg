@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800" width="1000" height="800">
+  <!-- Arrowheads are manually-rotated triangles (see diagram_game_loop.svg for why). -->
+  <rect x="0" y="0" width="1000" height="800" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="25" font-weight="bold" fill="#1c4a86">Unity Visual Scripting: Level 1 Spawn Loop</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">EnemySpawner's Script Graph - the node-for-node equivalent of the Level 1 code</text>
+
+  <rect x="350" y="92" width="300" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="122" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">ON START</text>
+  <text x="500" y="141" text-anchor="middle" font-family="Arial" font-size="11" fill="#cfe0f4">(event node)</text>
+
+  <path d="M500,152 L500,182" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,182) rotate(90)"/>
+
+  <rect x="110" y="180" width="780" height="290" rx="16" fill="none" stroke="#16305c" stroke-width="2.5" stroke-dasharray="9,6"/>
+  <rect x="132" y="172" width="340" height="34" rx="8" fill="#16305c"/>
+  <text x="302" y="195" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">FOR LOOP - 0 to enemyCount, Loop Body</text>
+
+  <!-- INSTANTIATE node -->
+  <rect x="230" y="222" width="540" height="86" rx="10" fill="#ffffff" stroke="#16305c" stroke-width="2.5"/>
+  <rect x="230" y="222" width="540" height="34" rx="8" fill="#16305c"/>
+  <text x="500" y="245" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">INSTANTIATE</text>
+  <polygon points="230,264 220,270 230,276" fill="#16305c"/>
+  <polygon points="770,264 780,270 770,276" fill="#16305c"/>
+
+  <text x="250" y="278" font-family="Arial" font-size="13" font-weight="bold" fill="#16305c">Asset:</text>
+  <text x="330" y="278" font-family="Consolas, monospace" font-size="13" fill="#333333">Enemy Prefab</text>
+
+  <text x="475" y="299" text-anchor="end" font-family="Arial" font-size="13" font-weight="bold" fill="#16305c">Instance (out):</text>
+  <rect x="485" y="287" width="150" height="24" rx="6" fill="#f6e6b8" stroke="#c9a227" stroke-width="1.5"/>
+  <text x="560" y="304" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" font-weight="bold" fill="#7a5a10">spawned object</text>
+  <circle cx="770" cy="299" r="7" fill="#e8c25a" stroke="#a97e1f" stroke-width="2"/>
+
+  <path d="M500,308 L500,334" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,334) rotate(90)"/>
+
+  <!-- SET POSITION node -->
+  <rect x="290" y="336" width="420" height="94" rx="10" fill="#ffffff" stroke="#16305c" stroke-width="2.5"/>
+  <rect x="290" y="336" width="420" height="34" rx="8" fill="#16305c"/>
+  <text x="500" y="359" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">SET POSITION</text>
+  <polygon points="290,378 280,384 290,390" fill="#16305c"/>
+
+  <text x="365" y="404" text-anchor="end" font-family="Arial" font-size="13" font-weight="bold" fill="#16305c">Target:</text>
+  <rect x="375" y="392" width="150" height="24" rx="6" fill="#f6e6b8" stroke="#c9a227" stroke-width="1.5"/>
+  <text x="450" y="409" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" font-weight="bold" fill="#7a5a10">Instance</text>
+  <circle cx="375" cy="404" r="6" fill="#e8c25a" stroke="#a97e1f" stroke-width="1.5"/>
+
+  <text x="365" y="425" text-anchor="end" font-family="Arial" font-size="13" font-weight="bold" fill="#16305c">Position:</text>
+  <text x="375" y="425" font-family="Consolas, monospace" font-size="12.5" fill="#333333">from loop Index</text>
+
+  <!-- the direct wire - the whole point: Instantiate's output pin plugs straight into Set Position's Target pin -->
+  <path d="M770,299 C 830,299 830,404 381,404" fill="none" stroke="#c9a227" stroke-width="3.5"/>
+  <text x="800" y="345" text-anchor="middle" font-family="Arial" font-size="12.5" fill="#7a5a10" font-style="italic" font-weight="bold" transform="rotate(90 800 345)">direct wire - no extra step needed</text>
+
+  <path d="M500,430 L500,458" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,458) rotate(90)"/>
+  <text x="490" y="450" text-anchor="end" font-family="Arial" font-size="12" fill="#555555" font-style="italic">repeat for each index</text>
+
+  <path d="M500,470 L500,506" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,506) rotate(90)"/>
+
+  <rect x="290" y="508" width="420" height="80" rx="12" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="500" y="540" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">5 ENEMIES NOW EXIST</text>
+  <text x="500" y="562" text-anchor="middle" font-family="Arial" font-size="13" fill="#cfe0f4">positioned in a row, each independent</text>
+
+  <path d="M500,588 L500,618" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,618) rotate(90)"/>
+  <circle cx="500" cy="634" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="500" cy="634" r="7" fill="#16305c"/>
+  <text x="522" y="639" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end</text>
+
+  <text x="500" y="694" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">Instantiate's own output pin already holds the exact instance it just created - dragging that pin straight into</text>
+  <text x="500" y="716" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">Set Position's Target is the normal way node graphs work, not a special trick this lesson had to reach for.</text>
+</svg>

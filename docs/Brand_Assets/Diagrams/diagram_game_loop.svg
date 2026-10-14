@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620">
+  <!-- Arrowheads are drawn as manually-rotated triangles (not SVG markers) because
+       the SVG->PNG renderer in our pipeline doesn't compute orient="auto" correctly
+       for curved paths, which made every marker-based arrowhead point due right
+       regardless of the curve's actual direction. Each triangle below points in +x
+       by default and is rotated to match that arrow's tangent angle at its endpoint. -->
+  <rect x="0" y="0" width="1000" height="620" fill="#ffffff"/>
+
+  <text x="500" y="48" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-weight="bold" fill="#1c4a86">The Game Loop</text>
+
+  <!-- three stage boxes arranged in a triangle -->
+  <!-- INPUT: top -->
+  <g>
+    <rect x="390" y="90" width="220" height="100" rx="14" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+    <text x="500" y="132" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold" fill="#f4f0e6">INPUT</text>
+    <text x="500" y="158" text-anchor="middle" font-family="Arial" font-size="15" fill="#cfe0f4">Check keyboard, mouse,</text>
+    <text x="500" y="176" text-anchor="middle" font-family="Arial" font-size="15" fill="#cfe0f4">touch, controller</text>
+  </g>
+
+  <!-- UPDATE: bottom right -->
+  <g>
+    <rect x="640" y="380" width="220" height="100" rx="14" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+    <text x="750" y="422" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold" fill="#f4f0e6">UPDATE</text>
+    <text x="750" y="448" text-anchor="middle" font-family="Arial" font-size="15" fill="#cfe0f4">Move things, apply rules,</text>
+    <text x="750" y="466" text-anchor="middle" font-family="Arial" font-size="15" fill="#cfe0f4">check for events</text>
+  </g>
+
+  <!-- RENDER: bottom left -->
+  <g>
+    <rect x="140" y="380" width="220" height="100" rx="14" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+    <text x="250" y="422" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold" fill="#f4f0e6">RENDER</text>
+    <text x="250" y="448" text-anchor="middle" font-family="Arial" font-size="15" fill="#cfe0f4">Draw the frame</text>
+    <text x="250" y="466" text-anchor="middle" font-family="Arial" font-size="15" fill="#cfe0f4">to the screen</text>
+  </g>
+
+  <!-- curved arrows forming a cycle: INPUT -> UPDATE -> RENDER -> INPUT -->
+  <path d="M 595 195 Q 760 260 755 375" fill="none" stroke="#c99a2e" stroke-width="5"/>
+  <path d="M 635 445 Q 500 500 365 445" fill="none" stroke="#c99a2e" stroke-width="5"/>
+  <path d="M 245 375 Q 250 260 405 195" fill="none" stroke="#c99a2e" stroke-width="5"/>
+
+  <!-- manual arrowheads: tip placed at each curve's endpoint, rotated to the tangent angle -->
+  <path d="M0,0 L-11,-4.5 L-11,4.5 Z" fill="#c99a2e" transform="translate(755,375) rotate(92.49)"/>
+  <path d="M0,0 L-11,-4.5 L-11,4.5 Z" fill="#c99a2e" transform="translate(365,445) rotate(-157.83)"/>
+  <path d="M0,0 L-11,-4.5 L-11,4.5 Z" fill="#c99a2e" transform="translate(405,195) rotate(-22.75)"/>
+
+  <!-- center label -->
+  <circle cx="500" cy="335" r="88" fill="#f4f0e6" stroke="#c9a227" stroke-width="2.5"/>
+  <text x="500" y="325" text-anchor="middle" font-family="Arial" font-size="17" font-weight="bold" fill="#1c4a86">repeats</text>
+  <text x="500" y="347" text-anchor="middle" font-family="Arial" font-size="17" font-weight="bold" fill="#1c4a86">~60 times</text>
+  <text x="500" y="369" text-anchor="middle" font-family="Arial" font-size="17" font-weight="bold" fill="#1c4a86">every second</text>
+
+  <text x="500" y="576" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">Every engine you use runs some version of this loop under the hood - it's why your character</text>
+  <text x="500" y="598" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">moves smoothly instead of jumping in one big step.</text>
+</svg>

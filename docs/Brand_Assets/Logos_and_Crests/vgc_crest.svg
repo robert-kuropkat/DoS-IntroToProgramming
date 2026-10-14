@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 520" width="420" height="520">
+  <defs>
+    <linearGradient id="shieldBlue2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f6fb5"/>
+      <stop offset="1" stop-color="#16305c"/>
+    </linearGradient>
+    <linearGradient id="gold2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8c25a"/>
+      <stop offset="1" stop-color="#c99a2e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- laurel wreath: left -->
+  <g fill="url(#gold2)" stroke="#a97e1f" stroke-width="1.5">
+    <g id="leftLeaves2">
+      <ellipse cx="70" cy="150" rx="20" ry="9" transform="rotate(-25 70 150)"/>
+      <ellipse cx="60" cy="185" rx="21" ry="9" transform="rotate(-12 60 185)"/>
+      <ellipse cx="55" cy="222" rx="22" ry="9" transform="rotate(-2 55 222)"/>
+      <ellipse cx="58" cy="259" rx="22" ry="9" transform="rotate(10 58 259)"/>
+      <ellipse cx="66" cy="295" rx="21" ry="9" transform="rotate(22 66 295)"/>
+      <ellipse cx="80" cy="328" rx="20" ry="9" transform="rotate(35 80 328)"/>
+      <ellipse cx="100" cy="357" rx="19" ry="8" transform="rotate(48 100 357)"/>
+    </g>
+  </g>
+  <g fill="url(#gold2)" stroke="#a97e1f" stroke-width="1.5">
+    <use href="#leftLeaves2" transform="translate(420,0) scale(-1,1)"/>
+  </g>
+  <path d="M75,140 Q50,240 95,350" fill="none" stroke="#a97e1f" stroke-width="3"/>
+  <path d="M345,140 Q370,240 325,350" fill="none" stroke="#a97e1f" stroke-width="3"/>
+
+  <!-- top ribbon: SLHE tag -->
+  <g>
+    <path d="M140,55 Q210,28 280,55 L280,80 Q210,58 140,80 Z" fill="#1c4a86" stroke="#12315c" stroke-width="2"/>
+    <text x="210" y="70" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="bold" letter-spacing="2" fill="#f4e2a8">S L H E</text>
+  </g>
+
+  <!-- shield -->
+  <g>
+    <path d="M120,90 L300,90 L300,250 Q300,330 210,380 Q120,330 120,250 Z"
+          fill="url(#shieldBlue2)" stroke="#0f2c52" stroke-width="5"/>
+
+    <!-- faint pixel-grid accent, top corners -->
+    <g fill="#3f7fc0" opacity="0.5">
+      <rect x="130" y="100" width="10" height="10"/>
+      <rect x="144" y="100" width="10" height="10"/>
+      <rect x="130" y="114" width="10" height="10"/>
+      <rect x="280" y="100" width="10" height="10"/>
+      <rect x="266" y="100" width="10" height="10"/>
+      <rect x="280" y="114" width="10" height="10"/>
+    </g>
+
+    <!-- game controller, centered -->
+    <g transform="translate(140,150)">
+      <path d="M10,40
+               Q10,15 35,15
+               L105,15
+               Q130,15 130,40
+               L130,68
+               Q130,92 112,92
+               Q100,92 94,78
+               L92,72
+               Q88,64 78,64
+               L62,64
+               Q52,64 48,72
+               L46,78
+               Q40,92 28,92
+               Q10,92 10,68 Z"
+            fill="url(#gold2)" stroke="#a97e1f" stroke-width="3"/>
+      <!-- d-pad -->
+      <g fill="#16305c">
+        <rect x="27" y="35" width="10" height="26" rx="2"/>
+        <rect x="17" y="45" width="30" height="10" rx="2"/>
+      </g>
+      <!-- action buttons -->
+      <g fill="#16305c">
+        <circle cx="103" cy="38" r="6"/>
+        <circle cx="118" cy="48" r="6"/>
+        <circle cx="103" cy="58" r="6"/>
+        <circle cx="88" cy="48" r="6"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- bottom ribbon: Video Game Creation (single line, sized to stay legible at small display sizes) -->
+  <g>
+    <path d="M20,392 Q210,350 400,392 L400,446 Q210,404 20,446 Z" fill="#f4f0e6" stroke="#c9a227" stroke-width="2.5"/>
+    <text x="210" y="425" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="bold" fill="#1c4a86">Video Game Creation</text>
+  </g>
+</svg>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 920" width="1000" height="920">
+  <rect x="0" y="0" width="1000" height="920" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="bold" fill="#1c4a86">GML Visual: Level 1 Lives Decrement and Game Over Check</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">obj_enemy's Step event and obj_gamemanager's Draw GUI event - the block-for-block equivalent of the Level 1 code</text>
+
+  <text x="500" y="94" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">obj_enemy's Step event - inside the EXISTING "y &gt; room_height" true branch, right before Instance - Destroy Instance</text>
+
+  <rect x="230" y="106" width="540" height="86" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="128" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">SET LIVES</text>
+  <text x="500" y="148" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Target: obj_gamemanager   Lives: -1</text>
+  <text x="500" y="166" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Relative: checked</text>
+  <text x="500" y="184" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4" font-style="italic">purpose-built block - stores lives on the instance (__dnd_lives), not a global</text>
+
+  <path d="M500,192 L500,220" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,220) rotate(90)"/>
+
+  <rect x="270" y="222" width="460" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="248" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">IF LIVES</text>
+  <text x="500" y="268" text-anchor="middle" font-family="Consolas, monospace" font-size="13" fill="#cfe0f4">Target: obj_gamemanager   &lt;= 0</text>
+
+  <path d="M500,282 L500,312" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,312) rotate(90)"/>
+  <text x="516" y="302" font-family="Arial" font-size="13" fill="#555555" font-style="italic">true</text>
+
+  <rect x="310" y="314" width="380" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="340" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">SET VARIABLE (Assign Variable)</text>
+  <text x="500" y="360" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#cfe0f4">obj_gamemanager.has_lost = true</text>
+  <text x="850" y="348" text-anchor="middle" font-family="Arial" font-size="11" fill="#555555" font-style="italic">(no dedicated block for a custom flag,</text>
+  <text x="850" y="364" text-anchor="middle" font-family="Arial" font-size="11" fill="#555555" font-style="italic">so this is the generic Set Variable block)</text>
+
+  <path d="M500,374 L500,404" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,404) rotate(90)"/>
+
+  <rect x="290" y="406" width="420" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="431" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">INSTANCE - DESTROY INSTANCE</text>
+  <text x="500" y="450" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#cfe0f4">Instance: self (unconditional, same as Lesson 7)</text>
+
+  <path d="M500,466 L500,494" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,494) rotate(90)"/>
+  <circle cx="500" cy="510" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="500" cy="510" r="7" fill="#16305c"/>
+  <text x="522" y="515" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end (escaped - a life spent)</text>
+
+  <text x="500" y="562" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">- - - a separate event, shown stacked here for comparison - - -</text>
+
+  <text x="500" y="590" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">obj_gamemanager's Draw GUI event - a second, parallel block pair alongside the EXISTING has_won check</text>
+
+  <rect x="290" y="602" width="420" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="627" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">IF VARIABLE</text>
+  <text x="500" y="647" text-anchor="middle" font-family="Consolas, monospace" font-size="13" fill="#cfe0f4">has_lost</text>
+
+  <path d="M500,662 L500,690" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,690) rotate(90)"/>
+  <text x="516" y="680" font-family="Arial" font-size="13" fill="#555555" font-style="italic">true</text>
+
+  <rect x="270" y="692" width="460" height="80" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="720" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">DRAW TEXT</text>
+  <text x="500" y="742" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" fill="#cfe0f4">X: 400   Y: 90   Text: "Game Over"</text>
+  <text x="500" y="760" text-anchor="middle" font-family="Arial" font-size="11" fill="#cfe0f4" font-style="italic">matching the code path's exact field values</text>
+
+  <path d="M500,772 L500,800" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,800) rotate(90)"/>
+  <circle cx="500" cy="816" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="500" cy="816" r="7" fill="#16305c"/>
+  <text x="522" y="821" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end (Game Over shown)</text>
+
+  <text x="500" y="866" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">Same object, same event, same targeting whether Lesson 7's win check was built in Code or Visual -</text>
+  <text x="500" y="888" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">obj_gamemanager owns has_won and has_lost exactly the same way.</text>
+</svg>

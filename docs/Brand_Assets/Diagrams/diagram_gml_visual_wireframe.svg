@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700">
+  <!-- Arrowheads are manually-rotated triangles (see diagram_game_loop.svg for why:
+       this renderer doesn't compute SVG marker orient="auto" correctly on curves). -->
+  <rect x="0" y="0" width="1000" height="700" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="bold" fill="#1c4a86">GML Visual Wireframe: Capturing One Spawned Instance</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">inside the Repeat block, obj_spawner's Create event - Create Instance's Target, handed off to Apply To's Action Scope</text>
+
+  <!-- BLOCK A: Instance - Create Instance -->
+  <rect x="100" y="140" width="460" height="230" rx="10" fill="#ffffff" stroke="#16305c" stroke-width="2.5"/>
+  <rect x="100" y="140" width="460" height="42" rx="10" fill="#16305c"/>
+  <text x="330" y="167" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#f4f0e6">INSTANCE - CREATE INSTANCE</text>
+
+  <text x="120" y="215" font-family="Arial" font-size="14" font-weight="bold" fill="#16305c">Object:</text>
+  <text x="220" y="215" font-family="Consolas, monospace" font-size="14" fill="#333333">obj_enemy</text>
+
+  <text x="120" y="249" font-family="Arial" font-size="14" font-weight="bold" fill="#16305c">Layer:</text>
+  <text x="220" y="249" font-family="Consolas, monospace" font-size="14" fill="#333333">"Instances"</text>
+
+  <text x="120" y="283" font-family="Arial" font-size="14" font-weight="bold" fill="#16305c">X:</text>
+  <text x="220" y="283" font-family="Consolas, monospace" font-size="13" fill="#333333">80 + (enemy_count * 96)</text>
+
+  <text x="120" y="317" font-family="Arial" font-size="14" font-weight="bold" fill="#16305c">Y:</text>
+  <text x="220" y="317" font-family="Consolas, monospace" font-size="14" fill="#333333">80</text>
+
+  <text x="120" y="351" font-family="Arial" font-size="14" font-weight="bold" fill="#16305c">Target:</text>
+  <rect x="205" y="332" width="160" height="26" rx="6" fill="#f6e6b8" stroke="#c9a227" stroke-width="1.5"/>
+  <text x="215" y="350" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#7a5a10">new_enemy</text>
+
+  <!-- callout 1 -->
+  <circle cx="420" cy="345" r="13" fill="#e8c25a" stroke="#a97e1f" stroke-width="2"/>
+  <text x="420" y="350" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#16305c">1</text>
+
+  <!-- execution-order connector: Block A leads straight into Block B -->
+  <path d="M330,370 L330,432" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(330,432) rotate(90)"/>
+  <text x="346" y="405" font-family="Arial" font-size="13" fill="#555555" font-style="italic">then, right after</text>
+
+  <!-- BLOCK B: Instance - Apply To -->
+  <rect x="100" y="436" width="460" height="92" rx="10" fill="#ffffff" stroke="#16305c" stroke-width="2.5"/>
+  <rect x="100" y="436" width="460" height="42" rx="10" fill="#16305c"/>
+  <text x="330" y="463" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#f4f0e6">INSTANCE - APPLY TO</text>
+  <text x="330" y="505" text-anchor="middle" font-family="Arial" font-size="13" fill="#555555" font-style="italic">(no fields of its own - just an Action Scope corner control)</text>
+
+  <!-- Action Scope corner control on Block B -->
+  <circle cx="530" cy="457" r="12" fill="#eef2f7" stroke="#16305c" stroke-width="2"/>
+  <path d="M524,454 L530,462 L536,454" fill="none" stroke="#16305c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- leader line from corner control up to the popup -->
+  <path d="M530,445 C 610,410 700,360 760,300" fill="none" stroke="#888888" stroke-width="1.6" stroke-dasharray="4,4"/>
+
+  <!-- ACTION SCOPE popup -->
+  <rect x="640" y="140" width="300" height="230" rx="10" fill="#f7f8fa" stroke="#16305c" stroke-width="2"/>
+  <rect x="640" y="140" width="300" height="34" rx="10" fill="#16305c"/>
+  <text x="790" y="163" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#f4f0e6">ACTION SCOPE</text>
+
+  <text x="660" y="200" font-family="Arial" font-size="13" font-weight="bold" fill="#16305c">Expression:</text>
+  <rect x="660" y="208" width="260" height="28" rx="6" fill="#f6e6b8" stroke="#c9a227" stroke-width="1.5"/>
+  <text x="672" y="227" font-family="Consolas, monospace" font-size="14" font-weight="bold" fill="#7a5a10">new_enemy</text>
+
+  <!-- callout 2 -->
+  <circle cx="905" cy="221" r="13" fill="#e8c25a" stroke="#a97e1f" stroke-width="2"/>
+  <text x="905" y="226" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#16305c">2</text>
+
+  <line x1="660" y1="256" x2="920" y2="256" stroke="#cccccc" stroke-width="1.5"/>
+  <text x="660" y="280" font-family="Arial" font-size="12" fill="#999999" font-style="italic">or pick instead:</text>
+  <circle cx="672" cy="303" r="6" fill="none" stroke="#aaaaaa" stroke-width="1.5"/>
+  <text x="686" y="308" font-family="Arial" font-size="13" fill="#999999">Self</text>
+  <circle cx="740" cy="303" r="6" fill="none" stroke="#aaaaaa" stroke-width="1.5"/>
+  <text x="754" y="308" font-family="Arial" font-size="13" fill="#999999">Other</text>
+  <circle cx="672" cy="330" r="6" fill="none" stroke="#aaaaaa" stroke-width="1.5"/>
+  <text x="686" y="335" font-family="Arial" font-size="13" fill="#999999">obj_enemy (all of them)</text>
+
+  <!-- data-reference connector: Target's captured value carries into Expression field -->
+  <path d="M366,345 C 500,345 500,222 655,222" fill="none" stroke="#c99a2e" stroke-width="3" stroke-dasharray="2,7"/>
+  <path d="M0,0 L-11,-4.5 L-11,4.5 Z" fill="#c99a2e" transform="translate(655,222) rotate(180)"/>
+
+  <!-- Rightward nesting callout -->
+  <path d="M562,482 L636,482" stroke="#16305c" stroke-width="3.5"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(636,482) rotate(0)"/>
+  <rect x="640" y="440" width="300" height="84" rx="10" fill="#ffffff" stroke="#16305c" stroke-width="2" stroke-dasharray="7,5"/>
+  <text x="790" y="468" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#16305c">IF EXPRESSION, then...</text>
+  <text x="790" y="490" text-anchor="middle" font-family="Arial" font-size="13" fill="#555555">Set Instance Colour</text>
+  <text x="790" y="510" text-anchor="middle" font-family="Arial" font-size="12" fill="#888888" font-style="italic">attached to the RIGHT of Apply To</text>
+
+  <text x="500" y="588" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">1. Target is the only place Create Instance lets you capture a reference to the exact instance it just made.</text>
+  <text x="500" y="612" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">2. Apply To's Action Scope Expression field is where that captured name goes instead of Self/Other/an object -</text>
+  <text x="500" y="636" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">everything attached to the RIGHT of Apply To (not below it) then runs with "Self" meaning that one instance,</text>
+  <text x="500" y="660" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">so the purpose-built Set Instance Colour block works normally - no generic block or typed workaround needed.</text>
+</svg>

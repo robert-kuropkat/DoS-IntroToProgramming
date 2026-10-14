@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 970" width="1000" height="970">
+  <rect x="0" y="0" width="1000" height="970" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="bold" fill="#1c4a86">Score Joins the Hit Path - Then Push or Poll Takes Over</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">The same shape in every engine - whatever the exact code or blocks look like</text>
+
+  <circle cx="500" cy="96" r="12" fill="#16305c"/>
+
+  <path d="M500,108 L500,136" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,136) rotate(90)"/>
+
+  <rect x="260" y="138" width="480" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="164" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">ENEMY HIT DETECTED</text>
+  <text x="500" y="184" text-anchor="middle" font-family="Arial" font-size="11" fill="#cfe0f4" font-style="italic">the same confirmed-hit event every lesson since Lesson 6 already uses</text>
+
+  <path d="M500,198 L500,226" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,226) rotate(90)"/>
+
+  <rect x="150" y="228" width="700" height="92" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="252" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">ON THE MANAGER OBJECT: TWO CONSEQUENCES, ONE EVENT</text>
+  <text x="340" y="276" text-anchor="middle" font-family="Consolas, monospace" font-size="13" fill="#cfe0f4">enemies_remaining -= 1</text>
+  <text x="660" y="276" text-anchor="middle" font-family="Consolas, monospace" font-size="13" fill="#cfe0f4">score += 10</text>
+  <text x="500" y="298" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4" font-style="italic">both changes live on the same dedicated manager object, right next to each other</text>
+
+  <path d="M500,306 L500,334" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,334) rotate(90)"/>
+
+  <polygon points="500,336 640,386 500,436 360,386" fill="#e8c25a" stroke="#a97e1f" stroke-width="2.5"/>
+  <text x="500" y="382" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#3a2d0a">enemies_remaining</text>
+  <text x="500" y="398" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#3a2d0a">&lt;= 0 ?</text>
+
+  <path d="M640,386 Q 740,386 740,420" fill="none" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(740,420) rotate(90)"/>
+  <text x="700" y="404" text-anchor="middle" font-family="Arial" font-size="12" fill="#555555" font-style="italic">True</text>
+
+  <rect x="600" y="422" width="280" height="56" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="740" y="446" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#f4f0e6">SHOW WIN MESSAGE</text>
+  <text x="740" y="464" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4" font-style="italic">unrelated to this week's HUD work</text>
+
+  <path d="M500,436 L500,476" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,476) rotate(90)"/>
+  <text x="470" y="460" text-anchor="end" font-family="Arial" font-size="12" fill="#555555" font-style="italic">False, or either way</text>
+
+  <text x="500" y="508" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">- - - score and lives have now changed. how does the display find out? - - -</text>
+
+  <polygon points="500,522 660,580 500,638 340,580" fill="#e8c25a" stroke="#a97e1f" stroke-width="2.5"/>
+  <text x="500" y="572" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#3a2d0a">Does the display check</text>
+  <text x="500" y="590" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#3a2d0a">every frame, or get told?</text>
+
+  <path d="M340,580 L200,580" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(190,580) rotate(180)"/>
+  <text x="270" y="568" text-anchor="middle" font-family="Arial" font-size="12" fill="#555555" font-style="italic">Told (PUSH)</text>
+
+  <path d="M660,580 L800,580" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(810,580) rotate(0)"/>
+  <text x="730" y="568" text-anchor="middle" font-family="Arial" font-size="12" fill="#555555" font-style="italic">Checks (POLL)</text>
+
+  <rect x="20" y="552" width="170" height="90" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="105" y="576" text-anchor="middle" font-family="Arial" font-size="13.5" font-weight="bold" fill="#f4f0e6">PUSH</text>
+  <text x="105" y="596" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4">Call an update function</text>
+  <text x="105" y="610" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4">right here, right now</text>
+  <text x="105" y="628" text-anchor="middle" font-family="Arial" font-size="10" fill="#cfe0f4" font-style="italic">Godot, GDevelop, Unreal, 001GC</text>
+
+  <rect x="810" y="552" width="170" height="90" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="895" y="576" text-anchor="middle" font-family="Arial" font-size="13.5" font-weight="bold" fill="#f4f0e6">POLL</text>
+  <text x="895" y="596" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4">Re-check score &amp; lives</text>
+  <text x="895" y="610" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4">every single frame</text>
+  <text x="895" y="628" text-anchor="middle" font-family="Arial" font-size="10" fill="#cfe0f4" font-style="italic">GameMaker, TIC-80, Unity (this week)</text>
+
+  <path d="M105,642 L105,700 L500,700" fill="none" stroke="#16305c" stroke-width="4"/>
+  <path d="M895,642 L895,700 L500,700" fill="none" stroke="#16305c" stroke-width="4"/>
+  <path d="M500,700 L500,728" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,728) rotate(90)"/>
+
+  <rect x="270" y="730" width="460" height="70" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="756" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">HUD SHOWS CURRENT SCORE &amp; LIVES</text>
+  <text x="500" y="776" text-anchor="middle" font-family="Arial" font-size="11" fill="#cfe0f4" font-style="italic">never stale, whichever path got it there</text>
+
+  <path d="M500,800 L500,828" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,828) rotate(90)"/>
+  <circle cx="500" cy="844" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="500" cy="844" r="7" fill="#16305c"/>
+
+  <text x="500" y="890" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">Neither PUSH nor POLL is "more correct" - every engine in this course uses one or the other,</text>
+  <text x="500" y="912" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">and both guarantee the display can never fall out of sync with the real values.</text>
+
+  <text x="500" y="950" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="13" fill="#a97e1f" font-style="italic">VIDEO GAME CREATION</text>
+</svg>

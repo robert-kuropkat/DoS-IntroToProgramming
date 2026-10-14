@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1100" width="1000" height="1100">
+<rect width="1000" height="1100" fill="#ffffff"/>
+<text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="bold" fill="#1c4a86">Unreal Blueprint: Level 1 Reset and Restart</text>
+<text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">BP_GameManager's ResetGame, BeginPlay, and IA_Restart event - plus the Branch at the top of BP_Enemy's Tick</text>
+<text x="500" y="94" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">BP_GameManager - new Custom Event ResetGame</text>
+<rect x="290" y="106" width="420" height="52" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+<text x="500" y="128" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">CUSTOM EVENT</text>
+<text x="500" y="146" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">ResetGame</text>
+<path d="M500,158 L500,182" stroke="#16305c" stroke-width="4"/><path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,184) rotate(90)"/>
+<rect x="180" y="186" width="640" height="64" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+<text x="500" y="208" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">FOR EACH LOOP -> DESTROY ACTOR</text>
+<text x="500" y="226" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Array: Get All Actors of Class (BP_Enemy)</text>
+<path d="M500,250 L500,274" stroke="#16305c" stroke-width="4"/><path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,276) rotate(90)"/>
+<rect x="180" y="278" width="640" height="106" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+<text x="500" y="300" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">SET (x4)</text>
+<text x="500" y="318" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Score = 0     Lives = 3</text>
+<text x="500" y="336" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">EnemiesRemaining = 5     GameActive = true</text>
+<text x="500" y="353" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4" font-style="italic">all four variables live on BP_GameManager</text>
+<path d="M500,384 L500,408" stroke="#16305c" stroke-width="4"/><path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,410) rotate(90)"/>
+<rect x="180" y="412" width="640" height="64" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+<text x="500" y="434" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">CALL SETSTATUS  then  CALL UPDATEHUD</text>
+<text x="500" y="452" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">HUDWidget, ""     HUDWidget, Score, Lives</text>
+<path d="M500,476 L500,500" stroke="#16305c" stroke-width="4"/><path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,502) rotate(90)"/>
+<rect x="180" y="504" width="640" height="64" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+<text x="500" y="526" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">FOR LOOP (0 to 4) -> SPAWN ACTOR FROM CLASS</text>
+<text x="500" y="544" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">BP_Enemy at (BaseX + Index * 150, BaseY, 0)</text>
+<text x="500" y="561" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4" font-style="italic">your existing Lesson 5 spawn logic, moved here</text>
+<path d="M500,568 L500,592" stroke="#16305c" stroke-width="4"/><path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,594) rotate(90)"/>
+<circle cx="500" cy="610" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/><circle cx="500" cy="610" r="7" fill="#16305c"/>
+<text x="500" y="664" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">Two callers of the same event</text>
+<rect x="50" y="680" width="400" height="86" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+<text x="250" y="702" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">EVENT BEGINPLAY</text>
+<text x="250" y="720" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Create Widget -> Add to Viewport</text>
+<text x="250" y="738" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">-> Set HUDWidget  then  CALL RESETGAME</text>
+<rect x="550" y="680" width="400" height="86" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+<text x="750" y="702" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">IA_RESTART  (Started)</text>
+<text x="750" y="720" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Branch: !GameActive</text>
+<text x="750" y="738" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">True -> CALL RESETGAME</text>
+<text x="750" y="755" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4" font-style="italic">Enhanced Input Action Event</text>
+<circle cx="250" cy="806" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/><circle cx="250" cy="806" r="7" fill="#16305c"/>
+<path d="M250,766 L250,790" stroke="#16305c" stroke-width="4"/><path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(250,792) rotate(90)"/>
+<circle cx="750" cy="806" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/><circle cx="750" cy="806" r="7" fill="#16305c"/>
+<path d="M750,766 L750,790" stroke="#16305c" stroke-width="4"/><path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(750,792) rotate(90)"/>
+<text x="500" y="870" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">BP_Enemy's Event Graph - the first node of Event Tick</text>
+<rect x="180" y="882" width="640" height="86" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+<text x="500" y="904" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">BRANCH</text>
+<text x="500" y="922" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Condition: Get GameActive (from Get Actor of Class BP_GameManager)</text>
+<text x="500" y="940" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">True -> all existing movement logic</text>
+<text x="500" y="957" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4" font-style="italic">False -> nothing happens, enemies stay frozen</text>
+<text x="500" y="1020" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">ResetGame is the one place that sets up a fresh game - called from BeginPlay and from the R key.</text>
+<text x="500" y="1060" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="13" fill="#a97e1f" font-style="italic">VIDEO GAME CREATION</text></svg>

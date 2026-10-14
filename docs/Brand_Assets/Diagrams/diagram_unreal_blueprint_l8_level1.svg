@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 940" width="1000" height="940">
+  <rect x="0" y="0" width="1000" height="940" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="bold" fill="#1c4a86">Unreal Blueprint: Level 1 Lives Decrement and Game Over Check</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">BP_Enemy's escape Branch, a new dispatcher, and BP_GameManager's new custom event</text>
+
+  <text x="500" y="94" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">BP_Enemy's Event Graph - the EXISTING escape Branch from Lesson 7, right before Destroy Actor</text>
+
+  <rect x="330" y="106" width="340" height="70" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="132" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">BRANCH (from Lesson 7)</text>
+  <text x="500" y="152" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">GetActorLocation().Y &lt; -400</text>
+  <text x="500" y="167" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4" font-style="italic">True</text>
+
+  <path d="M500,176 L500,204" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,204) rotate(90)"/>
+
+  <rect x="290" y="206" width="420" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="232" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">CALL ONENEMYESCAPED (Broadcast)</text>
+  <text x="500" y="251" text-anchor="middle" font-family="Arial" font-size="11" fill="#cfe0f4" font-style="italic">new Event Dispatcher, added to BP_Enemy this week</text>
+
+  <path d="M500,266 L500,294" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,294) rotate(90)"/>
+
+  <rect x="290" y="296" width="420" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="322" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">DESTROY ACTOR</text>
+  <text x="500" y="341" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#cfe0f4">Target: Self (unconditional, same as Lesson 7)</text>
+
+  <path d="M500,356 L500,384" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,384) rotate(90)"/>
+  <circle cx="500" cy="400" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="500" cy="400" r="7" fill="#16305c"/>
+  <text x="522" y="405" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end (escaped - a life spent)</text>
+
+  <text x="500" y="440" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">- - - Level Blueprint's spawn loop - a second Bind Event, alongside the existing OnEnemyDestroyed bind - - -</text>
+
+  <rect x="230" y="452" width="540" height="70" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="480" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">BIND EVENT TO ONENEMYESCAPED</text>
+  <text x="500" y="500" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Target: spawned Actor   Event: BP_GameManager ref's HandleEnemyEscaped</text>
+
+  <text x="500" y="555" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">BP_GameManager's Event Graph - a new Custom Event, alongside the existing HandleEnemyDestroyed</text>
+
+  <rect x="330" y="567" width="340" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="593" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">CUSTOM EVENT</text>
+  <text x="500" y="612" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#cfe0f4">HandleEnemyEscaped</text>
+
+  <path d="M500,627 L500,655" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,655) rotate(90)"/>
+
+  <rect x="310" y="657" width="380" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="683" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">SET LIVES</text>
+  <text x="500" y="702" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#cfe0f4">Lives = Lives - 1</text>
+
+  <path d="M500,717 L500,745" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,745) rotate(90)"/>
+
+  <rect x="290" y="747" width="420" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="773" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">BRANCH</text>
+  <text x="500" y="792" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#cfe0f4">Lives &lt;= 0</text>
+
+  <path d="M710,777 Q 800,777 800,807" fill="none" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(800,807) rotate(90)"/>
+  <text x="760" y="795" text-anchor="middle" font-family="Arial" font-size="12" fill="#555555" font-style="italic">True</text>
+
+  <rect x="650" y="809" width="300" height="70" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="800" y="835" text-anchor="middle" font-family="Arial" font-size="13.5" font-weight="bold" fill="#f4f0e6">PRINT STRING</text>
+  <text x="800" y="855" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">"Game Over", Print to Screen = true</text>
+
+  <text x="500" y="912" text-anchor="middle" font-family="Arial" font-size="13" fill="#555555" font-style="italic">Same shape as HandleEnemyDestroyed's Score branch - a second dispatcher, a second handler, one manager.</text>
+</svg>

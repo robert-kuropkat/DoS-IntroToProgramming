@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 520" width="420" height="520">
+  <defs>
+    <linearGradient id="shieldBlue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f6fb5"/>
+      <stop offset="1" stop-color="#1c4a86"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8c25a"/>
+      <stop offset="1" stop-color="#c99a2e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- laurel wreath: left -->
+  <g fill="url(#gold)" stroke="#a97e1f" stroke-width="1.5">
+    <g id="leftLeaves">
+      <ellipse cx="70" cy="150" rx="20" ry="9" transform="rotate(-25 70 150)"/>
+      <ellipse cx="60" cy="185" rx="21" ry="9" transform="rotate(-12 60 185)"/>
+      <ellipse cx="55" cy="222" rx="22" ry="9" transform="rotate(-2 55 222)"/>
+      <ellipse cx="58" cy="259" rx="22" ry="9" transform="rotate(10 58 259)"/>
+      <ellipse cx="66" cy="295" rx="21" ry="9" transform="rotate(22 66 295)"/>
+      <ellipse cx="80" cy="328" rx="20" ry="9" transform="rotate(35 80 328)"/>
+      <ellipse cx="100" cy="357" rx="19" ry="8" transform="rotate(48 100 357)"/>
+    </g>
+  </g>
+  <!-- laurel wreath: right (mirrored) -->
+  <g fill="url(#gold)" stroke="#a97e1f" stroke-width="1.5">
+    <use href="#leftLeaves" transform="translate(420,0) scale(-1,1)"/>
+  </g>
+  <!-- laurel stems -->
+  <path d="M75,140 Q50,240 95,350" fill="none" stroke="#a97e1f" stroke-width="3"/>
+  <path d="M345,140 Q370,240 325,350" fill="none" stroke="#a97e1f" stroke-width="3"/>
+
+  <!-- top ribbon: South Lake -->
+  <g>
+    <path d="M105,55 Q210,20 315,55 L315,85 Q210,55 105,85 Z" fill="#1c4a86" stroke="#12315c" stroke-width="2"/>
+    <path d="M95,58 L105,55 L105,85 L95,90 Z" fill="#12315c"/>
+    <path d="M325,58 L315,55 L315,85 L325,90 Z" fill="#12315c"/>
+    <text x="210" y="72" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="bold" fill="#f4e2a8">South Lake</text>
+  </g>
+
+  <!-- shield -->
+  <g>
+    <path d="M120,90 L300,90 L300,250 Q300,330 210,380 Q120,330 120,250 Z"
+          fill="url(#shieldBlue)" stroke="#0f2c52" stroke-width="5"/>
+    <!-- quadrant divider cross -->
+    <line x1="210" y1="90" x2="210" y2="373" stroke="#f4f0e6" stroke-width="5"/>
+    <path d="M122,232 Q210,258 298,232" fill="none" stroke="#f4f0e6" stroke-width="5"/>
+
+    <!-- Q1 top-left: books -->
+    <g transform="translate(128,110)">
+      <rect x="0" y="42" width="60" height="10" rx="1.5" fill="#8a5a2b"/>
+      <rect x="4" y="30" width="56" height="10" rx="1.5" fill="#c98a3f"/>
+      <rect x="0" y="18" width="60" height="10" rx="1.5" fill="#8a5a2b"/>
+      <circle cx="30" cy="6" r="9" fill="#c94f3f"/>
+      <path d="M30,-3 Q34,-8 39,-6" fill="none" stroke="#3f8f57" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="30" y1="-3" x2="30" y2="1" stroke="#7a5230" stroke-width="2"/>
+    </g>
+
+    <!-- Q2 top-right: schoolhouse with trees -->
+    <g transform="translate(228,116)">
+      <circle cx="10" cy="30" r="11" fill="#3f8f57"/>
+      <rect x="6" y="30" width="8" height="16" fill="#7a5230"/>
+      <circle cx="60" cy="30" r="11" fill="#3f8f57"/>
+      <rect x="56" y="30" width="8" height="16" fill="#7a5230"/>
+      <rect x="20" y="24" width="30" height="22" fill="#f4f0e6"/>
+      <path d="M17,24 L35,8 L53,24 Z" fill="#c94f3f"/>
+      <rect x="31" y="34" width="8" height="12" fill="#8a5a2b"/>
+      <rect x="22" y="28" width="6" height="6" fill="#7fb7d8"/>
+      <rect x="42" y="28" width="6" height="6" fill="#7fb7d8"/>
+    </g>
+
+    <!-- Q3 bottom-left: sun / gear emblem -->
+    <g transform="translate(128,272)">
+      <circle cx="30" cy="30" r="10" fill="none" stroke="#e8c25a" stroke-width="4"/>
+      <g stroke="#e8c25a" stroke-width="4" stroke-linecap="round">
+        <line x1="30" y1="4" x2="30" y2="12"/>
+        <line x1="30" y1="48" x2="30" y2="56"/>
+        <line x1="4" y1="30" x2="12" y2="30"/>
+        <line x1="48" y1="30" x2="56" y2="30"/>
+        <line x1="12" y1="12" x2="17" y2="17"/>
+        <line x1="43" y1="43" x2="48" y2="48"/>
+        <line x1="48" y1="12" x2="43" y2="17"/>
+        <line x1="17" y1="43" x2="12" y2="48"/>
+      </g>
+    </g>
+
+    <!-- Q4 bottom-right: diploma -->
+    <g transform="translate(230,272)">
+      <rect x="8" y="10" width="44" height="14" rx="7" fill="#f4f0e6" stroke="#c9a227" stroke-width="2" transform="rotate(-8 30 17)"/>
+      <circle cx="14" cy="34" r="9" fill="#c94f3f"/>
+      <path d="M14,43 L8,58 L14,53 L20,58 Z" fill="#c94f3f"/>
+    </g>
+  </g>
+
+  <!-- bottom ribbon: Home Educators -->
+  <g>
+    <path d="M60,392 Q210,358 360,392 L360,432 Q210,398 60,432 Z" fill="#f4f0e6" stroke="#c9a227" stroke-width="2.5"/>
+    <text x="210" y="418" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="27" font-weight="bold" fill="#1c4a86">Home Educators</text>
+  </g>
+</svg>

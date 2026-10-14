@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="1000" height="640">
+  <!-- Arrowheads are drawn as manually-rotated triangles (not SVG markers) because
+       the SVG->PNG renderer in our pipeline doesn't compute orient="auto" correctly
+       for curved paths, which made every marker-based arrowhead point due right
+       regardless of the curve's actual direction. Each triangle below points in +x
+       by default and is rotated to match that arrow's tangent angle at its endpoint. -->
+  <rect x="0" y="0" width="1000" height="640" fill="#ffffff"/>
+  <text x="500" y="48" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-weight="bold" fill="#1c4a86">Sequences vs. Events</text>
+
+  <!-- divider -->
+  <line x1="500" y1="80" x2="500" y2="600" stroke="#dddddd" stroke-width="2"/>
+
+  <!-- LEFT: SEQUENCE -->
+  <text x="250" y="95" text-anchor="middle" font-family="Arial" font-size="22" font-weight="bold" fill="#16305c">SEQUENCE</text>
+  <text x="250" y="118" text-anchor="middle" font-family="Arial" font-size="14" fill="#555555" font-style="italic">runs once, top to bottom, every time</text>
+
+  <g font-family="Arial" font-size="16" fill="#f4f0e6">
+    <rect x="140" y="145" width="220" height="56" rx="10" fill="#2f6fb5" stroke="#16305c" stroke-width="2.5"/>
+    <text x="250" y="179" text-anchor="middle" font-weight="bold">1. Set up the level</text>
+
+    <path d="M250,201 L250,224" stroke="#16305c" stroke-width="4"/>
+    <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(250,224) rotate(90)"/>
+
+    <rect x="140" y="226" width="220" height="56" rx="10" fill="#2f6fb5" stroke="#16305c" stroke-width="2.5"/>
+    <text x="250" y="260" text-anchor="middle" font-weight="bold">2. Place the player</text>
+
+    <path d="M250,282 L250,305" stroke="#16305c" stroke-width="4"/>
+    <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(250,305) rotate(90)"/>
+
+    <rect x="140" y="307" width="220" height="56" rx="10" fill="#2f6fb5" stroke="#16305c" stroke-width="2.5"/>
+    <text x="250" y="341" text-anchor="middle" font-weight="bold">3. Show the score = 0</text>
+
+    <path d="M250,363 L250,386" stroke="#16305c" stroke-width="4"/>
+    <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(250,386) rotate(90)"/>
+
+    <rect x="140" y="388" width="220" height="56" rx="10" fill="#2f6fb5" stroke="#16305c" stroke-width="2.5"/>
+    <text x="250" y="422" text-anchor="middle" font-weight="bold">4. Start the game loop</text>
+  </g>
+
+  <text x="250" y="480" text-anchor="middle" font-family="Arial" font-size="14" fill="#555555">Predictable, fixed order.</text>
+  <text x="250" y="500" text-anchor="middle" font-family="Arial" font-size="14" fill="#555555">Nothing skips ahead or waits.</text>
+
+  <!-- RIGHT: EVENT -->
+  <text x="750" y="95" text-anchor="middle" font-family="Arial" font-size="22" font-weight="bold" fill="#16305c">EVENT</text>
+  <text x="750" y="118" text-anchor="middle" font-family="Arial" font-size="14" fill="#555555" font-style="italic">waits, then reacts - maybe never, maybe many times</text>
+
+  <!-- trigger diamond -->
+  <polygon points="750,150 830,200 750,250 670,200" fill="#e8c25a" stroke="#a97e1f" stroke-width="3"/>
+  <text x="750" y="195" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#16305c">RIGHT KEY</text>
+  <text x="750" y="213" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#16305c">PRESSED?</text>
+
+  <path d="M750,250 L750,283" stroke="#c99a2e" stroke-width="4" stroke-dasharray="2,7"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#c99a2e" transform="translate(750,283) rotate(90)"/>
+  <text x="790" y="270" text-anchor="middle" font-family="Arial" font-size="13" fill="#888888" font-style="italic">yes</text>
+
+  <rect x="630" y="285" width="240" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="750" y="321" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#f4f0e6">Move the player right</text>
+
+  <!-- loop back arrow showing it checks again every frame -->
+  <path d="M 860 200 Q 920 200 920 220 Q 920 260 855 305" fill="none" stroke="#999999" stroke-width="2.5" stroke-dasharray="4,4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#c99a2e" transform="translate(855,305) rotate(145.30)"/>
+  <text x="945" y="235" font-family="Arial" font-size="12" fill="#888888" font-style="italic" transform="rotate(90 945 235)">checked every frame</text>
+
+  <text x="750" y="480" text-anchor="middle" font-family="Arial" font-size="14" fill="#555555">Only runs when its trigger fires.</text>
+  <text x="750" y="500" text-anchor="middle" font-family="Arial" font-size="14" fill="#555555">The rest of the time, it just waits.</text>
+
+  <text x="500" y="600" text-anchor="middle" font-family="Arial" font-size="16" fill="#555555" font-style="italic">Your Key Press Reactor this week is one Event. Setting up the character before that is a Sequence.</text>
+</svg>

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 900" width="1000" height="900">
+  <rect x="0" y="0" width="1000" height="900" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="bold" fill="#1c4a86">Unity Visual Scripting: Level 1 Lives Decrement and Game Over Check</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">Enemy prefab's Script Graph - a second branch off the existing escape Branch node</text>
+
+  <rect x="330" y="90" width="340" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="115" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">BRANCH (from Lesson 7)</text>
+  <text x="500" y="134" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Condition: transform.position.y &lt; -6f</text>
+
+  <path d="M500,150 L500,178" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,178) rotate(90)"/>
+  <text x="516" y="170" font-family="Arial" font-size="13" fill="#555555" font-style="italic">True</text>
+
+  <!-- SUBTRACT node -->
+  <rect x="230" y="180" width="540" height="80" rx="10" fill="#ffffff" stroke="#16305c" stroke-width="2.5"/>
+  <rect x="230" y="180" width="540" height="34" rx="8" fill="#16305c"/>
+  <text x="500" y="203" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">SUBTRACT</text>
+  <text x="270" y="238" font-family="Arial" font-size="12" fill="#888888" font-style="italic">(Math/Scalar category)</text>
+  <text x="500" y="238" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" fill="#333333">Lives - 1</text>
+
+  <path d="M500,260 L500,288" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,288) rotate(90)"/>
+
+  <!-- SET VARIABLE node -->
+  <rect x="270" y="290" width="460" height="70" rx="10" fill="#ffffff" stroke="#16305c" stroke-width="2.5"/>
+  <rect x="270" y="290" width="460" height="34" rx="8" fill="#16305c"/>
+  <text x="500" y="313" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">SET VARIABLE</text>
+  <text x="500" y="348" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" fill="#333333">Target: Lives (graph variable)</text>
+
+  <path d="M500,360 L500,388" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,388) rotate(90)"/>
+
+  <!-- LESS THAN OR EQUAL node -->
+  <rect x="260" y="390" width="480" height="70" rx="10" fill="#ffffff" stroke="#16305c" stroke-width="2.5"/>
+  <rect x="260" y="390" width="480" height="34" rx="8" fill="#16305c"/>
+  <text x="500" y="413" text-anchor="middle" font-family="Arial" font-size="13.5" font-weight="bold" fill="#f4f0e6">LESS THAN OR EQUAL</text>
+  <text x="300" y="448" font-family="Arial" font-size="11.5" fill="#888888" font-style="italic">(Comparison category)</text>
+  <text x="560" y="448" font-family="Consolas, monospace" font-size="12.5" fill="#333333">Lives &lt;= 0</text>
+
+  <path d="M500,460 L500,488" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,488) rotate(90)"/>
+
+  <!-- second BRANCH node -->
+  <rect x="290" y="490" width="420" height="70" rx="10" fill="#ffffff" stroke="#16305c" stroke-width="2.5"/>
+  <rect x="290" y="490" width="420" height="34" rx="8" fill="#16305c"/>
+  <text x="500" y="513" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">BRANCH</text>
+  <text x="500" y="548" text-anchor="middle" font-family="Arial" font-size="12" fill="#555555" font-style="italic">Condition: the Less Than or Equal result above</text>
+
+  <path d="M500,560 L500,588" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,588) rotate(90)"/>
+  <text x="516" y="580" font-family="Arial" font-size="13" fill="#555555" font-style="italic">True</text>
+
+  <!-- ON GUI event node -->
+  <rect x="280" y="590" width="440" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="616" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">ON GUI</text>
+  <text x="500" y="636" text-anchor="middle" font-family="Arial" font-size="11.5" fill="#cfe0f4" font-style="italic">event node - same pattern already used for the win message</text>
+
+  <path d="M500,650 L500,678" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,678) rotate(90)"/>
+
+  <!-- GUI LABEL node -->
+  <rect x="270" y="680" width="460" height="70" rx="10" fill="#ffffff" stroke="#16305c" stroke-width="2.5"/>
+  <rect x="270" y="680" width="460" height="34" rx="8" fill="#16305c"/>
+  <text x="500" y="703" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#f4f0e6">GUI LABEL</text>
+  <text x="500" y="738" text-anchor="middle" font-family="Consolas, monospace" font-size="12.5" fill="#333333">Text: "Game Over"</text>
+
+  <path d="M500,750 L500,778" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,778) rotate(90)"/>
+  <circle cx="500" cy="794" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="500" cy="794" r="7" fill="#16305c"/>
+  <text x="522" y="799" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end (Game Over shown)</text>
+
+  <text x="500" y="838" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">This branches off the SAME escape Branch node from Lesson 7 - the Destroy node it already fed still runs</text>
+  <text x="500" y="860" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">independently. Lives lives in a graph variable here, the same way this graph already tracked its own state.</text>
+</svg>

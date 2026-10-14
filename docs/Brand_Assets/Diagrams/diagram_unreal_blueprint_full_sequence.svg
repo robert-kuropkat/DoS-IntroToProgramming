@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1040" width="1000" height="1040">
+  <!-- Arrowheads are manually-rotated triangles (see diagram_game_loop.svg for why). -->
+  <rect x="0" y="0" width="1000" height="1040" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="bold" fill="#1c4a86">Full Blueprint Sequence: Level Blueprint's Event Graph</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">every node in the Complete Level 3 solution, wired in the order it actually runs</text>
+
+  <!-- Event BeginPlay -->
+  <rect x="350" y="92" width="300" height="60" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+  <text x="500" y="122" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">EVENT BEGINPLAY</text>
+  <text x="500" y="141" text-anchor="middle" font-family="Arial" font-size="11" fill="#cfe0f4">(event node)</text>
+
+  <path d="M500,152 L500,182" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,182) rotate(90)"/>
+
+  <!-- FOR LOOP container -->
+  <rect x="110" y="186" width="780" height="594" rx="16" fill="none" stroke="#16305c" stroke-width="2.5" stroke-dasharray="9,6"/>
+  <rect x="132" y="172" width="400" height="34" rx="8" fill="#16305c"/>
+  <text x="332" y="195" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">FOR LOOP - First 0, Last 4, Loop Body</text>
+
+  <!-- SPAWN ACTOR FROM CLASS node -->
+  <rect x="230" y="228" width="540" height="100" rx="10" fill="#ffffff" stroke="#16305c" stroke-width="2.5"/>
+  <rect x="230" y="228" width="540" height="34" rx="8" fill="#16305c"/>
+  <text x="500" y="251" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">SPAWN ACTOR FROM CLASS</text>
+  <polygon points="230,270 220,276 230,282" fill="#16305c"/>
+  <polygon points="770,270 780,276 770,282" fill="#16305c"/>
+
+  <text x="250" y="284" font-family="Arial" font-size="13" font-weight="bold" fill="#16305c">Class:</text>
+  <text x="315" y="284" font-family="Consolas, monospace" font-size="13" fill="#333333">BP_Enemy</text>
+  <text x="415" y="284" font-family="Arial" font-size="11.5" fill="#555555" font-style="italic">Transform.Location: from Index</text>
+
+  <text x="475" y="319" text-anchor="end" font-family="Arial" font-size="13" font-weight="bold" fill="#16305c">Return Value (out):</text>
+  <rect x="485" y="302" width="150" height="24" rx="6" fill="#f6e6b8" stroke="#c9a227" stroke-width="1.5"/>
+  <text x="560" y="319" text-anchor="middle" font-family="Consolas, monospace" font-size="12" font-weight="bold" fill="#7a5a10">spawned Actor</text>
+  <circle cx="770" cy="314" r="7" fill="#e8c25a" stroke="#a97e1f" stroke-width="2"/>
+
+  <path d="M500,328 L500,340" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,340) rotate(90)"/>
+
+  <!-- Select decision -->
+  <polygon points="500,345 560,380 500,415 440,380" fill="#e8c25a" stroke="#a97e1f" stroke-width="2.5"/>
+  <text x="500" y="376" text-anchor="middle" font-family="Arial" font-size="11.5" font-weight="bold" fill="#16305c">INDEX MOD 2</text>
+  <text x="500" y="390" text-anchor="middle" font-family="Arial" font-size="11.5" font-weight="bold" fill="#16305c">= 0 ?</text>
+
+  <path d="M460,398 L300,440" stroke="#16305c" stroke-width="3"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(300,440) rotate(-152)"/>
+  <path d="M540,398 L700,440" stroke="#16305c" stroke-width="3"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(700,440) rotate(-28)"/>
+
+  <text x="330" y="425" text-anchor="middle" font-family="Arial" font-size="13" fill="#555555" font-style="italic">true (even)</text>
+  <text x="670" y="425" text-anchor="middle" font-family="Arial" font-size="13" fill="#555555" font-style="italic">false (odd)</text>
+
+  <!-- Make Linear Color: dark red -->
+  <rect x="165" y="442" width="300" height="94" rx="10" fill="#ffffff" stroke="#16305c" stroke-width="2.5"/>
+  <rect x="165" y="442" width="300" height="30" rx="8" fill="#16305c"/>
+  <text x="315" y="463" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#f4f0e6">MAKE LINEAR COLOR</text>
+  <text x="315" y="490" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#333333">R 0.8  G 0.1  B 0.2</text>
+  <text x="315" y="510" text-anchor="middle" font-family="Arial" font-size="11" font-style="italic" fill="#7a5a10">deep crimson red</text>
+
+  <!-- Make Linear Color: light red -->
+  <rect x="535" y="442" width="300" height="94" rx="10" fill="#ffffff" stroke="#16305c" stroke-width="2.5"/>
+  <rect x="535" y="442" width="300" height="30" rx="8" fill="#16305c"/>
+  <text x="685" y="463" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#f4f0e6">MAKE LINEAR COLOR</text>
+  <text x="685" y="490" text-anchor="middle" font-family="Consolas, monospace" font-size="12" fill="#333333">R 0.95  G 0.4  B 0.5</text>
+  <text x="685" y="510" text-anchor="middle" font-family="Arial" font-size="11" font-style="italic" fill="#7a5a10">lighter dusty rose/pink</text>
+
+  <!-- merge -->
+  <path d="M315,536 L470,578" stroke="#16305c" stroke-width="3" fill="none"/>
+  <path d="M685,536 L530,578" stroke="#16305c" stroke-width="3" fill="none"/>
+  <path d="M500,578 L500,606" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,606) rotate(90)"/>
+  <text x="500" y="596" text-anchor="middle" font-family="Arial" font-size="11" fill="#555555" font-style="italic">(picked color)</text>
+
+  <!-- Set Vector Parameter Value node -->
+  <rect x="290" y="608" width="420" height="100" rx="10" fill="#ffffff" stroke="#16305c" stroke-width="2.5"/>
+  <rect x="290" y="608" width="420" height="34" rx="8" fill="#16305c"/>
+  <text x="500" y="631" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">SET VECTOR PARAMETER VALUE</text>
+  <polygon points="290,650 280,656 290,662" fill="#16305c"/>
+
+  <text x="365" y="678" text-anchor="end" font-family="Arial" font-size="13" font-weight="bold" fill="#16305c">Target:</text>
+  <rect x="375" y="666" width="150" height="24" rx="6" fill="#f6e6b8" stroke="#c9a227" stroke-width="1.5"/>
+  <text x="450" y="683" text-anchor="middle" font-family="Consolas, monospace" font-size="12" font-weight="bold" fill="#7a5a10">spawned Actor</text>
+  <circle cx="375" cy="678" r="6" fill="#e8c25a" stroke="#a97e1f" stroke-width="1.5"/>
+
+  <text x="365" y="699" text-anchor="end" font-family="Arial" font-size="13" font-weight="bold" fill="#16305c">Value:</text>
+  <text x="375" y="699" font-family="Arial" font-size="12" fill="#333333" font-style="italic">the color picked above</text>
+
+  <!-- the direct wire - Spawn Actor's Return Value plugs straight into Target, no promote-to-variable needed -->
+  <path d="M770,305 C 860,305 860,678 381,678" fill="none" stroke="#c9a227" stroke-width="3.5"/>
+  <text x="880" y="490" text-anchor="middle" font-family="Arial" font-size="12.5" fill="#7a5a10" font-style="italic" font-weight="bold" transform="rotate(90 880 490)">direct wire - Return Value straight to Target, no extra step</text>
+
+  <!-- exit from container: all 5 loop iterations complete -->
+  <path d="M500,780 L500,820" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,820) rotate(90)"/>
+
+  <rect x="290" y="822" width="420" height="80" rx="12" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="500" y="854" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">ALL 5 ENEMIES EXIST</text>
+  <text x="500" y="876" text-anchor="middle" font-family="Arial" font-size="13" fill="#cfe0f4">alternating dark red and light red materials</text>
+
+  <path d="M500,902 L500,932" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,932) rotate(90)"/>
+  <circle cx="500" cy="948" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="500" cy="948" r="7" fill="#16305c"/>
+  <text x="522" y="953" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end</text>
+
+  <text x="500" y="998" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">This is the node-for-node equivalent of the Complete Level 3 solution's Blueprint description above - Spawn</text>
+  <text x="500" y="1020" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">Actor's Return Value pin feeds Set Vector Parameter Value directly, the same way Unity's Instantiate output does.</text>
+</svg>

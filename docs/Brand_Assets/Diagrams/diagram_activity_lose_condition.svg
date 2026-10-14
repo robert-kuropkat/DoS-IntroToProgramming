@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700">
+  <rect x="0" y="0" width="1000" height="700" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="bold" fill="#1c4a86">Activity Diagram: The Lose Condition</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">what happens when an enemy reaches the bottom of the screen unshot, this week</text>
+
+  <!-- start node -->
+  <circle cx="500" cy="102" r="11" fill="#16305c" stroke="#c9a227" stroke-width="2"/>
+  <text x="461" y="107" text-anchor="end" font-family="Arial" font-size="13" fill="#555555" font-style="italic">start (enemy escapes)</text>
+  <path d="M500,113 L500,148" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,148) rotate(90)"/>
+
+  <rect x="330" y="150" width="340" height="70" rx="12" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="500" y="180" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#f4f0e6">GameManager: decrement lives</text>
+  <text x="500" y="200" text-anchor="middle" font-family="Arial" font-size="12.5" fill="#cfe0f4">(same object that already owns enemies_remaining)</text>
+
+  <path d="M500,220 L500,254" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,254) rotate(90)"/>
+
+  <!-- decision diamond: lives <= 0? -->
+  <polygon points="500,258 630,330 500,402 370,330" fill="#e8c25a" stroke="#a97e1f" stroke-width="3"/>
+  <text x="500" y="324" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#16305c">LIVES &lt;= 0?</text>
+  <text x="500" y="343" text-anchor="middle" font-family="Arial" font-size="12.5" fill="#5a4a1c">(checked right after the decrement)</text>
+
+  <!-- yes -> Game Over branch (right) -->
+  <path d="M630,330 Q730,330 800,330" fill="none" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(800,330) rotate(0)"/>
+  <text x="710" y="318" text-anchor="middle" font-family="Arial" font-size="13" fill="#555555" font-style="italic">yes</text>
+
+  <rect x="660" y="360" width="280" height="70" rx="12" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="800" y="392" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">GameManager: "Game Over"</text>
+  <text x="800" y="411" text-anchor="middle" font-family="Arial" font-size="12" fill="#cfe0f4">drawn/printed on screen</text>
+
+  <path d="M800,330 L800,360" fill="none" stroke="none"/>
+
+  <path d="M800,430 L800,464" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(800,464) rotate(90)"/>
+  <circle cx="800" cy="480" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="800" cy="480" r="7" fill="#16305c"/>
+  <text x="822" y="485" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end (game over)</text>
+
+  <!-- no -> game continues (left) -->
+  <path d="M370,330 Q270,330 200,330" fill="none" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(200,330) rotate(180)"/>
+  <text x="290" y="318" text-anchor="middle" font-family="Arial" font-size="13" fill="#555555" font-style="italic">no</text>
+
+  <rect x="30" y="295" width="230" height="70" rx="12" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="145" y="327" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#f4f0e6">Game continues</text>
+  <text x="145" y="346" text-anchor="middle" font-family="Arial" font-size="12" fill="#cfe0f4">(lives still &gt; 0)</text>
+
+  <path d="M145,365 L145,398" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(145,398) rotate(90)"/>
+  <circle cx="145" cy="414" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/>
+  <circle cx="145" cy="414" r="7" fill="#16305c"/>
+  <text x="167" y="419" text-anchor="start" font-family="Arial" font-size="13" fill="#555555" font-style="italic">end (next frame)</text>
+
+  <rect x="120" y="500" width="760" height="130" rx="10" fill="#f4f0e6" stroke="#c9a227" stroke-width="2"/>
+  <text x="500" y="530" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#16305c">Compare to last week's diagram:</text>
+  <text x="500" y="555" text-anchor="middle" font-family="Arial" font-size="14" fill="#333333">Shooting an enemy still only decrements enemies_remaining - a completely separate counter,</text>
+  <text x="500" y="576" text-anchor="middle" font-family="Arial" font-size="14" fill="#333333">checked for a win, not a loss. lives and enemies_remaining live on the same GameManager</text>
+  <text x="500" y="597" text-anchor="middle" font-family="Arial" font-size="14" fill="#333333">object, but neither one is ever touched by the code path that changes the other.</text>
+
+  <text x="500" y="665" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">This is the payoff of Rule 13's dedicated GameManager: a second piece of shared state slotted in without touching anything else.</text>
+</svg>

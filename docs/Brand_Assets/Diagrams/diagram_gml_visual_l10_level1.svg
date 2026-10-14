@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1272" width="1000" height="1272">
+<rect width="1000" height="1272" fill="#ffffff"/>
+<text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="bold" fill="#1c4a86">GML Visual: Level 1 Reset and Freeze</text>
+<text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">scr_start_game, obj_gamemanager's Step event, and obj_enemy's Step event - the block-for-block equivalent of the Level 1 code</text>
+<text x="500" y="94" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">scr_start_game - top block: DECLARE A NEW FUNCTION, Name = start_game (everything below is nested inside it)</text>
+<rect x="180" y="106" width="640" height="59" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+<text x="500" y="128" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">DESTROY INSTANCE</text>
+<text x="500" y="146" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Applies To: obj_enemy</text>
+<path d="M500,165 L500,189" stroke="#16305c" stroke-width="4"/><path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,191) rotate(90)"/>
+<rect x="180" y="193" width="640" height="78" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+<text x="500" y="215" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">SET SCORE</text>
+<text x="500" y="233" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Target: obj_gamemanager   Value: 0   Relative: unchecked</text>
+<text x="500" y="250" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4" font-style="italic">purpose-built block (__dnd_score)</text>
+<path d="M500,271 L500,295" stroke="#16305c" stroke-width="4"/><path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,297) rotate(90)"/>
+<rect x="180" y="299" width="640" height="78" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+<text x="500" y="321" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">SET LIVES</text>
+<text x="500" y="339" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Target: obj_gamemanager   Value: 3   Relative: unchecked</text>
+<text x="500" y="356" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4" font-style="italic">purpose-built block (__dnd_lives)</text>
+<path d="M500,377 L500,401" stroke="#16305c" stroke-width="4"/><path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,403) rotate(90)"/>
+<rect x="180" y="405" width="640" height="97" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+<text x="500" y="427" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">SET VARIABLE (x4)</text>
+<text x="500" y="445" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Target: obj_gamemanager</text>
+<text x="500" y="463" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">enemies_remaining = 5   has_won = false</text>
+<text x="500" y="481" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">has_lost = false   game_active = true</text>
+<path d="M500,502 L500,526" stroke="#16305c" stroke-width="4"/><path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,528) rotate(90)"/>
+<rect x="180" y="530" width="640" height="78" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+<text x="500" y="552" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">YOUR EXISTING SPAWN LOOP BLOCKS</text>
+<text x="500" y="570" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Repeat 5: Create Instance of obj_enemy</text>
+<text x="500" y="588" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">at X: 80 + enemy_count * 96   Y: 80</text>
+<path d="M500,608 L500,632" stroke="#16305c" stroke-width="4"/><path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,634) rotate(90)"/>
+<circle cx="500" cy="648" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/><circle cx="500" cy="648" r="7" fill="#16305c"/>
+<text x="500" y="706" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">obj_spawner Create event and obj_gamemanager Step event - both call the function</text>
+<rect x="180" y="720" width="640" height="64" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+<text x="500" y="742" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">FUNCTION CALL</text>
+<text x="500" y="760" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Function: start_game</text>
+<text x="500" y="777" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4" font-style="italic">obj_spawner's Create event: replaces the old spawn-loop blocks</text>
+<path d="M500,784 L500,808" stroke="#16305c" stroke-width="4"/><path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,810) rotate(90)"/>
+<rect x="180" y="812" width="640" height="86" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+<text x="500" y="834" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">IF VARIABLE  +  IF KEY PRESSED</text>
+<text x="500" y="852" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">If Variable: game_active equal to false</text>
+<text x="500" y="870" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">nested: If Key Pressed, Key = ord("R")  ->  FUNCTION CALL start_game</text>
+<text x="500" y="887" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4" font-style="italic">in obj_gamemanager's Step event</text>
+<path d="M500,898 L500,922" stroke="#16305c" stroke-width="4"/><path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,924) rotate(90)"/>
+<circle cx="500" cy="938" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/><circle cx="500" cy="938" r="7" fill="#16305c"/>
+<text x="500" y="994" text-anchor="middle" font-family="Arial" font-size="13" fill="#a97e1f" font-style="italic" font-weight="bold">obj_enemy's Step event - the very first block, before any movement</text>
+<rect x="180" y="1008" width="640" height="86" rx="10" fill="#16305c" stroke="#0f2c52" stroke-width="2.5"/>
+<text x="500" y="1030" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#f4f0e6">IF VARIABLE</text>
+<text x="500" y="1048" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">Target: obj_gamemanager   game_active equal to false</text>
+<text x="500" y="1066" text-anchor="middle" font-family="Consolas, monospace" font-size="11.5" fill="#cfe0f4">then: EXIT EVENT</text>
+<text x="500" y="1083" text-anchor="middle" font-family="Arial" font-size="10.5" fill="#cfe0f4" font-style="italic">freezes movement once the round ends</text>
+<path d="M500,1094 L500,1118" stroke="#16305c" stroke-width="4"/><path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,1120) rotate(90)"/>
+<circle cx="500" cy="1134" r="14" fill="#ffffff" stroke="#16305c" stroke-width="3"/><circle cx="500" cy="1134" r="7" fill="#16305c"/>
+<text x="522" y="1139" text-anchor="start" font-family="Arial" font-size="12" fill="#555555" font-style="italic">existing movement and escape blocks continue below</text>
+<text x="500" y="1212" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">One script, two callers, and a one-block freeze at the top of the enemy - nothing duplicated.</text>
+<text x="500" y="1252" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="13" fill="#a97e1f" font-style="italic">VIDEO GAME CREATION</text></svg>

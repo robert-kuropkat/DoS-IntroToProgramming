@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620">
+  <!-- Arrowheads are manually-rotated triangles (see diagram_game_loop.svg for why:
+       this renderer doesn't compute SVG marker orient="auto" correctly on curves). -->
+  <rect x="0" y="0" width="1000" height="620" fill="#ffffff"/>
+
+  <text x="500" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="27" font-weight="bold" fill="#1c4a86">Activity Diagram: Key Press Reactor</text>
+  <text x="500" y="66" text-anchor="middle" font-family="Arial" font-size="14" fill="#888888" font-style="italic">a simplified UML-style diagram of what happens, in order, each time the game checks your input</text>
+
+  <!-- start node -->
+  <circle cx="500" cy="100" r="11" fill="#16305c" stroke="#c9a227" stroke-width="2"/>
+  <text x="461" y="105" text-anchor="end" font-family="Arial" font-size="13" fill="#555555" font-style="italic">start</text>
+  <path d="M500,111 L500,140" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,140) rotate(90)"/>
+
+  <!-- decision diamond -->
+  <polygon points="500,145 595,200 500,255 405,200" fill="#e8c25a" stroke="#a97e1f" stroke-width="3"/>
+  <text x="500" y="196" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#16305c">RIGHT ARROW</text>
+  <text x="500" y="213" text-anchor="middle" font-family="Arial" font-size="14.5" font-weight="bold" fill="#16305c">PRESSED?</text>
+
+  <!-- yes -> move -->
+  <path d="M500,255 L500,300" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,300) rotate(90)"/>
+  <text x="516" y="282" font-family="Arial" font-size="13" fill="#555555" font-style="italic">yes</text>
+
+  <rect x="360" y="302" width="280" height="70" rx="12" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="500" y="343" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#f4f0e6">Move the player right</text>
+
+  <!-- move -> redraw -->
+  <path d="M500,372 L500,410" stroke="#16305c" stroke-width="4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#16305c" transform="translate(500,410) rotate(90)"/>
+
+  <rect x="330" y="412" width="340" height="70" rx="12" fill="#16305c" stroke="#0f2c52" stroke-width="3"/>
+  <text x="500" y="453" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#f4f0e6">Redraw the player on screen</text>
+
+  <!-- no branch: short arrow right out of diamond -->
+  <path d="M595,200 Q660,200 700,200" fill="none" stroke="#999999" stroke-width="2.5" stroke-dasharray="4,4"/>
+  <path d="M0,0 L-10,-4 L-10,4 Z" fill="#999999" transform="translate(700,200) rotate(0)"/>
+  <text x="650" y="188" text-anchor="middle" font-family="Arial" font-size="13" fill="#888888" font-style="italic">no</text>
+
+  <!-- loop-back: from redraw box, right and up, back into the diamond -->
+  <path d="M670,447 Q 800,447 800,200 Q 800,110 605,110" fill="none" stroke="#c99a2e" stroke-width="3" stroke-dasharray="2,7"/>
+  <path d="M0,0 L-11,-4.5 L-11,4.5 Z" fill="#c99a2e" transform="translate(605,110) rotate(180)"/>
+  <text x="815" y="325" font-family="Arial" font-size="13" fill="#888888" font-style="italic" transform="rotate(90 815 325)">next frame - about 1/60 of a second later</text>
+
+  <text x="500" y="560" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">This whole path - check, move, redraw - is one trip through the Update and Render</text>
+  <text x="500" y="582" text-anchor="middle" font-family="Arial" font-size="15" fill="#555555" font-style="italic">steps of the Game Loop you already learned. An Activity Diagram is just a picture of that order.</text>
+</svg>
