@@ -3,10 +3,9 @@
 /// @DnDHash : 5FC9AA3E
 /// @DnDApplyTo : {obj_GameManager}
 /// @DnDArgument : "var" "game_active"
-/// @DnDArgument : "not" "1"
-/// @DnDArgument : "value" "true"
-with(obj_GameManager) var l5FC9AA3E_0 = game_active == true;
-if(!l5FC9AA3E_0){	/// @DnDAction : YoYo Games.Common.Exit_Event
+/// @DnDArgument : "value" "false"
+with(obj_GameManager) var l5FC9AA3E_0 = game_active == false;
+if(l5FC9AA3E_0){	/// @DnDAction : YoYo Games.Common.Exit_Event
 	/// @DnDVersion : 1
 	/// @DnDHash : 1D7A10D2
 	/// @DnDParent : 5FC9AA3E

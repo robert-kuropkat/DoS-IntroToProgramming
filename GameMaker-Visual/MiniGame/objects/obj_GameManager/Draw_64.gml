@@ -63,3 +63,19 @@ if(has_lost){	/// @DnDAction : YoYo Games.Drawing.Draw_Value
 	/// @DnDArgument : "y" "90"
 	/// @DnDArgument : "caption" ""You Lose!  Press 'R' to restart.""
 	draw_text(400, 90, string("You Lose!  Press 'R' to restart.") + "");}
+
+/// @DnDAction : YoYo Games.Common.If_Variable
+/// @DnDVersion : 1
+/// @DnDHash : 009A4CFA
+/// @DnDApplyTo : {obj_GameManager}
+/// @DnDArgument : "var" "wave_message_timer"
+/// @DnDArgument : "op" "2"
+with(obj_GameManager) var l009A4CFA_0 = wave_message_timer > 0;
+if(l009A4CFA_0){	/// @DnDAction : YoYo Games.Drawing.Draw_Value
+	/// @DnDVersion : 1
+	/// @DnDHash : 03728171
+	/// @DnDApplyTo : {obj_GameManager}
+	/// @DnDParent : 009A4CFA
+	/// @DnDArgument : "caption" ""wave ""
+	/// @DnDArgument : "var" "wave"
+	with(obj_GameManager) draw_text(0, 0, string("wave ") + string(wave));}
