@@ -96,7 +96,15 @@ function wave_cleared() {	/// @DnDAction : YoYo Games.Common.If_Variable
 		has_won = true;
 		game_active = false;
 		
-		}}
+		}
+	
+		/// @DnDAction : YoYo Games.Audio.Play_Audio
+		/// @DnDVersion : 1.1
+		/// @DnDHash : 1945EFCE
+		/// @DnDParent : 6DA4D33F
+		/// @DnDArgument : "soundid" "sfx_win"
+		/// @DnDSaveInfo : "soundid" "sfx_win"
+		audio_play_sound(sfx_win, 0, 0, 1.0, undefined, 1.0);}
 
 	/// @DnDAction : YoYo Games.Common.Else
 	/// @DnDVersion : 1

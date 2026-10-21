@@ -35,7 +35,7 @@ func start_game():
 	game_active = true 
 	get_node("../WinText").hide() 
 	get_node("../LoseText").hide() 
-	get_node("../WaveText").hide()
+	get_node("../WaveAnnouncementText").hide()
 	update_hud() 
 	get_parent().spawn_enemies()
 
@@ -49,7 +49,6 @@ func on_enemy_destroyed():
 	score += 10 
 	update_hud()
 	if enemies_remaining <= 0:
-		$GameWinSound.play() 
 		wave_cleared()
 	#if enemies_remaining <= 0: 
 		#if wave >= total_waves:
@@ -81,6 +80,7 @@ func wave_cleared():
 		game_active = false 
 		get_node("../WinText").text = "You Win! Press R to Restart" 
 		get_node("../WinText").show()
+		$GameWinSound.play() 
 	else: 
 		wave += 1 
 		enemies_remaining = 5 
@@ -89,7 +89,8 @@ func wave_cleared():
 		announce_wave()
 		
 func announce_wave(): 
-	var banner = get_node("../WaveText") 
+	#var banner = get_node("../WaveText") 
+	var banner = get_node("../WaveAnnouncementText")
 	banner.text = "Wave " + str(wave) + "!" 
 	banner.show() 
 	await get_tree().create_timer(1.0).timeout 

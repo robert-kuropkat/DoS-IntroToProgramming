@@ -16,16 +16,21 @@ position = Vector2(575, 575)
 
 [node name="WinText" type="Label" parent="." unique_id=1710248003]
 visible = false
-offset_top = 50.0
-offset_right = 77.0
-offset_bottom = 73.0
+offset_left = 150.0
+offset_top = 200.0
+offset_right = 372.0
+offset_bottom = 223.0
+scale = Vector2(3, 3)
+theme_override_colors/font_color = Color(1, 1, 0, 1)
 text = "You Win!!!  Press 'R' to replay"
 
 [node name="LoseText" type="Label" parent="." unique_id=564935626]
 visible = false
-offset_top = 50.0
-offset_right = 92.0
-offset_bottom = 73.0
+offset_left = 150.0
+offset_top = 200.0
+offset_right = 399.0
+offset_bottom = 223.0
+scale = Vector2(3, 3)
 text = "Game Over! : Press 'R' to Restart"
 
 [node name="LivesText" type="Label" parent="." unique_id=37321681]
@@ -46,7 +51,17 @@ offset_top = 50.0
 offset_right = 40.0
 offset_bottom = 73.0
 scale = Vector2(1.5, 1.5)
+theme_override_colors/font_color = Color(1, 1, 0.011764706, 1)
 text = "Wave: "
+
+[node name="WaveAnnouncementText" type="Label" parent="." unique_id=1421540579]
+visible = false
+offset_left = 150.0
+offset_top = 200.0
+offset_right = 190.0
+offset_bottom = 223.0
+scale = Vector2(3, 3)
+theme_override_colors/font_color = Color(1, 1, 0, 1)
 
 [node name="GameManager" type="Node2D" parent="." unique_id=1513393633]
 script = ExtResource("3_elf4b")

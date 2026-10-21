@@ -36,6 +36,19 @@ if(y > room_height){	/// @DnDAction : YoYo Games.Instances.Set_Instance_Var
 	__dnd_lives += -1;
 	}
 
+	/// @DnDAction : YoYo Games.Common.Variable
+	/// @DnDVersion : 1
+	/// @DnDHash : 2192FF5F
+	/// @DnDApplyTo : {obj_GameManager}
+	/// @DnDParent : 3E399392
+	/// @DnDArgument : "expr" "-1"
+	/// @DnDArgument : "expr_relative" "1"
+	/// @DnDArgument : "var" "enemies_remaining"
+	with(obj_GameManager) {
+	enemies_remaining += -1;
+	
+	}
+
 	/// @DnDAction : YoYo Games.Instance Variables.If_Lives
 	/// @DnDVersion : 1
 	/// @DnDHash : 7EC42A59
@@ -80,7 +93,22 @@ if(y > room_height){	/// @DnDAction : YoYo Games.Instances.Set_Instance_Var
 		/// @DnDParent : 6509A2BA
 		/// @DnDArgument : "soundid" "sfx_lifelost"
 		/// @DnDSaveInfo : "soundid" "sfx_lifelost"
-		audio_play_sound(sfx_lifelost, 0, 0, 1.0, undefined, 1.0);}
+		audio_play_sound(sfx_lifelost, 0, 0, 1.0, undefined, 1.0);
+	
+		/// @DnDAction : YoYo Games.Common.If_Variable
+		/// @DnDVersion : 1
+		/// @DnDHash : 454D999A
+		/// @DnDApplyTo : {obj_GameManager}
+		/// @DnDParent : 6509A2BA
+		/// @DnDArgument : "var" "enemies_remaining"
+		/// @DnDArgument : "op" "3"
+		with(obj_GameManager) var l454D999A_0 = enemies_remaining <= 0;
+		if(l454D999A_0){	/// @DnDAction : YoYo Games.Common.Function_Call
+			/// @DnDVersion : 1
+			/// @DnDHash : 2ACB8DBB
+			/// @DnDParent : 454D999A
+			/// @DnDArgument : "function" "wave_cleared"
+			wave_cleared();}}
 
 	/// @DnDAction : YoYo Games.Instances.Destroy_Instance
 	/// @DnDVersion : 1

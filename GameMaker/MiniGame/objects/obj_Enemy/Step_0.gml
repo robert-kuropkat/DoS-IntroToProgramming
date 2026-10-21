@@ -11,6 +11,8 @@ if (y > room_height)
 		obj_GameManager.has_lost    = true; 
 		obj_GameManager.game_active = false;
 		audio_play_sound(sfx_gameover, 1, false);
+	} else if (obj_GameManager.enemies_remaining <= 0) { 
+		wave_cleared();
 	} else {
 		audio_play_sound(sfx_lifelost, 1, false);
 	}

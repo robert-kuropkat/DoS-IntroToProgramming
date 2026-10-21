@@ -23,6 +23,20 @@ with(obj_GameManager) {
 if(!variable_instance_exists(id, "__dnd_score")) __dnd_score = 0;__dnd_score += real(10);
 }
 
+/// @DnDAction : YoYo Games.Common.If_Variable
+/// @DnDVersion : 1
+/// @DnDHash : 26F7AAF9
+/// @DnDApplyTo : {obj_GameManager}
+/// @DnDArgument : "var" "enemies_remaining"
+/// @DnDArgument : "op" "3"
+with(obj_GameManager) var l26F7AAF9_0 = enemies_remaining <= 0;
+if(l26F7AAF9_0){	/// @DnDAction : YoYo Games.Common.Function_Call
+	/// @DnDVersion : 1
+	/// @DnDHash : 1A996973
+	/// @DnDParent : 26F7AAF9
+	/// @DnDArgument : "function" "wave_cleared"
+	wave_cleared();}
+
 /// @DnDAction : YoYo Games.Instances.Destroy_Instance
 /// @DnDVersion : 1
 /// @DnDHash : 581C5DFD
