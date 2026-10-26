@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -83845033807183973}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Player
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,8 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   speed: 6
-  audioSrc: {fileID: -418942867346721050}
-  flashTimer: 0
+  hitSound: {fileID: 8300000, guid: f054f7899290cca4bbcee6f3d15fe9fd, type: 3}
 --- !u!82 &-418942867346721050
 AudioSource:
   m_ObjectHideFlags: 0

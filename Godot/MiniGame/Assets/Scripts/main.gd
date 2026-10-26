@@ -3,11 +3,9 @@ extends Node2D
 var enemy_scene := preload("res://Assets/Scenes/enemy.tscn")
 var enemies_remaining := 0
 
-# Called when the node enters the scene tree for the first time.
 func _ready(): 
 	return
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 	
@@ -23,8 +21,3 @@ func spawn_enemies():
 		new_enemy.destroyed.connect($GameManager.on_enemy_destroyed)
 		new_enemy.escaped.connect($GameManager.on_enemy_escaped)
 		add_child(new_enemy)
-
-#func _on_enemy_destroyed(): 
-	#enemies_remaining -= 1 
-	#if enemies_remaining <= 0: 
-		#$WinLabel.show()

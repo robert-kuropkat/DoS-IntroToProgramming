@@ -1,10 +1,8 @@
-using UnityEditor.UI;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private AudioClip enemyHit;
-    [SerializeField] private float     enemySpeed = 0.75f;
+    public float enemySpeed = 1.5f;
 
     void Start()
     {
@@ -14,22 +12,12 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         if (!GameManager.gameActive) return;
-        transform.Translate(Vector3.down * enemySpeed * Time.deltaTime); 
-        if (transform.position.y < -6f) 
+
+        transform.Translate(Vector3.down * enemySpeed * Time.deltaTime);
+        if (transform.position.y < -6f)
         {
             GameManager.RegisterEscape();
-            Destroy(gameObject); 
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            AudioSource.PlayClipAtPoint(enemyHit, transform.position);
-            GameManager.RegisterKill();
             Destroy(gameObject);
         }
     }
-
 }

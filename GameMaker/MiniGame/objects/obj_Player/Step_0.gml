@@ -22,7 +22,7 @@ if (keyboard_check(vk_down))  { y += 4; sprite_index = Sprite_Orange }
 if (fire_cooldown > 0) fire_cooldown -= 1;
 if (  keyboard_check_pressed(vk_space) 
    && fire_cooldown <= 0) { 
-	                        instance_create_layer(x+65, y, "Instances", obj_Bullet); 
+	                        instance_create_layer(x+65, y, "Instances", obj_bullet); 
 							fire_cooldown = 12;
 							audio_play_sound(sfx_shoot, 1, false);
 						  }

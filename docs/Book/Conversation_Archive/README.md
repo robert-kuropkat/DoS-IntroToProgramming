@@ -27,8 +27,11 @@ thinking blocks, and queue/mode/cost bookkeeping entries.
   ("I want to start building out my class...", 2026-07-09) through the
   present day. Turns 1-391 came from the raw log export described below.
   From turn 392 onward, turns are appended live (see Live-Append Policy
-  below) rather than re-extracted from a fresh export each time. One JSON
-  object per line; see Schema below.
+  below) rather than re-extracted from a fresh export each time. As of this
+  update, live-appended content runs through turn 399, with one
+  `compaction_suspected` marker (near turn 398) flagging a compaction Robert
+  noticed between the archive-policy turn (397) and the Lesson 12 fix work
+  that followed it. One JSON object per line; see Schema below.
 - **`main_session_manifest.jsonl`** — a lightweight index over the same
   turns (turn_id, timestamp, a ~100-character preview, tool-call count,
   character counts, source). Meant to be read in full in one shot to decide

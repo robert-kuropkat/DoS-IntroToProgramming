@@ -7,13 +7,10 @@ var wave              := 1
 var total_waves       := 3
 var game_active       := true;
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$GameStartSound.play()
 	start_game.call_deferred()
-	# update_hud()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 
@@ -26,7 +23,6 @@ func _input(event):
 	
 func start_game(): 
 	for old_enemy in get_tree().get_nodes_in_group("enemies"): 
-		#print ("Cleaning up enemies...")
 		old_enemy.queue_free() 
 	enemies_remaining = 5 
 	lives             = 3 
@@ -50,22 +46,11 @@ func on_enemy_destroyed():
 	update_hud()
 	if enemies_remaining <= 0:
 		wave_cleared()
-	#if enemies_remaining <= 0: 
-		#if wave >= total_waves:
-			#game_active = false
-			#get_node("../WinText").show()
-			#$GameWinSound.play()
-		#else: 
-			#wave += 1 
-			#enemies_remaining = 5 
-			#update_hud() 
-			#get_parent().call_deferred("spawn_enemies")
 		
 func on_enemy_escaped():
 	lives -= 1 
 	enemies_remaining -= 1
 	update_hud()
-	#get_node("../LivesText").text = "Lives: " + str(lives)
 	if lives <= 0: 
 		game_active = false
 		get_node("../LoseText").show()
@@ -80,16 +65,16 @@ func wave_cleared():
 		game_active = false 
 		get_node("../WinText").text = "You Win! Press R to Restart" 
 		get_node("../WinText").show()
-		$GameWinSound.play() 
+		$WinSound.play() 
 	else: 
 		wave += 1 
 		enemies_remaining = 5 
 		update_hud() 
+		$WaveSound.play()
 		get_parent().call_deferred("spawn_enemies") 
 		announce_wave()
 		
 func announce_wave(): 
-	#var banner = get_node("../WaveText") 
 	var banner = get_node("../WaveAnnouncementText")
 	banner.text = "Wave " + str(wave) + "!" 
 	banner.show() 

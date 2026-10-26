@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://c4da3tomaf6xk" path="res://Assets/Audio/sfx_gameover.wav" id="5_nacht"]
 [ext_resource type="AudioStream" uid="uid://qo6tk4ivke4i" path="res://Assets/Audio/sfx_start.wav" id="6_nacht"]
 [ext_resource type="AudioStream" uid="uid://dtbpl53w7qcp8" path="res://Assets/Audio/sfx_win.wav" id="7_acsc0"]
+[ext_resource type="AudioStream" uid="uid://cn41hikb1fhj6" path="res://Assets/Audio/sfx_wave.wav" id="8_f8o6k"]
 
 [node name="Main" type="Node2D" unique_id=1596513565]
 script = ExtResource("1_elf4b")
@@ -75,5 +76,8 @@ stream = ExtResource("5_nacht")
 [node name="GameStartSound" type="AudioStreamPlayer2D" parent="GameManager" unique_id=1443025970]
 stream = ExtResource("6_nacht")
 
-[node name="GameWinSound" type="AudioStreamPlayer2D" parent="GameManager" unique_id=895103898]
+[node name="WinSound" type="AudioStreamPlayer2D" parent="GameManager" unique_id=895103898]
 stream = ExtResource("7_acsc0")
+
+[node name="WaveSound" type="AudioStreamPlayer2D" parent="GameManager" unique_id=1993097100]
+stream = ExtResource("8_f8o6k")

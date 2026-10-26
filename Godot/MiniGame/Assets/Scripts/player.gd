@@ -16,8 +16,6 @@ var   bullet_scene  := preload("res://Assets/Scenes/bullet.tscn")
 #endregion
 
 func _ready() -> void:
-	#position.x = 576.0
-	#position.y = 324.0
 	pass
 
 func _process(delta):

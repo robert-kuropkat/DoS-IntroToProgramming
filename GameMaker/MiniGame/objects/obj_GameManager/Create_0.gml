@@ -1,4 +1,4 @@
-enemies_remaining  = 0;
+//enemies_remaining  = 0;
 has_won            = false;
 has_lost           = false;
 game_active        = true;

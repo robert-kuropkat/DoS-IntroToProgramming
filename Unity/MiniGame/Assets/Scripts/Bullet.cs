@@ -2,20 +2,22 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float speed = 6.0f;
-    [SerializeField] private AudioSource audioSrc;
-    [SerializeField] private float flashTimer;
+    public float speed = 6f;
+    public AudioClip hitSound;
+    private float flashTimer;
 
     void Start()
     {
-        GetComponent<SpriteRenderer>().color = Color.orange;
+        GetComponent<SpriteRenderer>().color = Color.yellow;
         transform.localScale *= 1.3f;
         flashTimer = 0.1f;
-        audioSrc.Play();
     }
 
     void Update()
     {
+        transform.Translate(Vector3.up * speed * Time.deltaTime);
+        if (transform.position.y > 6f) Destroy(gameObject);
+
         if (flashTimer > 0f)
         {
             flashTimer -= Time.deltaTime;
@@ -25,14 +27,15 @@ public class Bullet : MonoBehaviour
                 transform.localScale /= 1.3f;
             }
         }
-        transform.Translate(Vector3.up * speed * Time.deltaTime);
-        if (transform.position.y > 6f) Destroy(gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
+            AudioSource.PlayClipAtPoint(hitSound, Camera.main.transform.position, 1.0f);
+            GameManager.RegisterKill();
+            Destroy(other.gameObject);
             Destroy(gameObject);
         }
     }
