@@ -33,9 +33,12 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            other.enabled = false; 
+            Enemy enemy   = other.GetComponent<Enemy>();
             AudioSource.PlayClipAtPoint(hitSound, Camera.main.transform.position, 1.0f);
             GameManager.RegisterKill();
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
+            enemy.StartCoroutine(enemy.HandleHit());
             Destroy(gameObject);
         }
     }

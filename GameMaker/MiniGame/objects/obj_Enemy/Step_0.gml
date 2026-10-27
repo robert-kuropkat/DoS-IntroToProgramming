@@ -1,7 +1,13 @@
 if (!obj_gamemanager.game_active)  { exit; }
 
+if      (  alarm[0] > 0 
+        && alarm[0] mod 2 == 0
+        ) 
+                         { sprite_index = spr_enemy_flash; } 
+else if ( alarm[0] > 0 ) { sprite_index = Sprite_Enemy;}
+
 y += enemy_speed;
-if (y > room_height) 
+if (y > room_height + 50) 
 { 
 	obj_gamemanager.__dnd_lives       -= 1; 
 	obj_gamemanager.enemies_remaining -= 1;

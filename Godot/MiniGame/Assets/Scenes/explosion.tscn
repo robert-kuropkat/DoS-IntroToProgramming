@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bautelftrxjub"]
+
+[ext_resource type="Texture2D" uid="uid://7ca3ipnmvfr2" path="res://Assets/Sprites/explosion_placeholder.png" id="1_c4esw"]
+[ext_resource type="Script" uid="uid://cceebi7iqwoig" path="res://Assets/Scripts/explosion.gd" id="2_puf38"]
+
+[node name="Explosion" type="Sprite2D" unique_id=831297697]
+texture = ExtResource("1_c4esw")
+script = ExtResource("2_puf38")
+
+[node name="Timer" type="Timer" parent="." unique_id=374478520]
+wait_time = 0.2
+one_shot = true
+autostart = true

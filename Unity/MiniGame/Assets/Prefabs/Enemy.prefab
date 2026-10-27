@@ -153,8 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8266f3ad2822e2345a242504ee28169e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  enemyHit: {fileID: 8300000, guid: f054f7899290cca4bbcee6f3d15fe9fd, type: 3}
   enemySpeed: 0.5
+  explosionPrefab: {fileID: 2070259539348172853, guid: d7d78d9ea1509084e9df78df115f2e2a, type: 3}
+  spriteRenderer: {fileID: 6767750496776131323}
+  flashSprite: {fileID: 738443948606163864, guid: ffc06f8b45b69094889a77c0ddf45a6f, type: 3}
 --- !u!82 &189429963412823513
 AudioSource:
   m_ObjectHideFlags: 0

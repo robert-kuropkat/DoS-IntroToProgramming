@@ -5,7 +5,7 @@ function spawn_enemies(){
 	          enemy_count++
 	) 
     { 
-		var new_enemy = instance_create_layer( 50 + enemy_count * 200
+		var new_enemy = instance_create_layer( 250 + enemy_count * 200
 											 , 80
 											 , "Instances"
 											 , obj_enemy
