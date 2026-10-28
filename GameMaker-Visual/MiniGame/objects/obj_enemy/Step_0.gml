@@ -53,9 +53,9 @@ else{	/// @DnDAction : YoYo Games.Common.If_Variable
 /// @DnDHash : 1AC268A0
 /// @DnDArgument : "x" "0"
 /// @DnDArgument : "x_relative" "1"
-/// @DnDArgument : "y" "enemy_speed"
+/// @DnDArgument : "y" "enemy_speed + ((obj_gamemanager.wave - 1) * 0.05)"
 /// @DnDArgument : "y_relative" "1"
-x += 0;y += enemy_speed;
+x += 0;y += enemy_speed + ((obj_gamemanager.wave - 1) * 0.05);
 
 /// @DnDAction : YoYo Games.Common.If_Expression
 /// @DnDVersion : 1

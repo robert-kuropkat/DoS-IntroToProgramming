@@ -42,24 +42,24 @@ function start_game() {	/// @DnDAction : YoYo Games.Common.Apply_To
 	/// @DnDInput : 6
 	/// @DnDApplyTo : {obj_gamemanager}
 	/// @DnDParent : 60377EA3
-	/// @DnDArgument : "expr" "5"
+	/// @DnDArgument : "expr" "1"
 	/// @DnDArgument : "expr_1" "false"
 	/// @DnDArgument : "expr_2" "false"
 	/// @DnDArgument : "expr_3" "true"
-	/// @DnDArgument : "expr_5" "1"
-	/// @DnDArgument : "var" "enemies_remaining"
+	/// @DnDArgument : "expr_5" "4 + wave"
+	/// @DnDArgument : "var" "wave"
 	/// @DnDArgument : "var_1" "has_won"
 	/// @DnDArgument : "var_2" "has_lost"
 	/// @DnDArgument : "var_3" "game_active"
 	/// @DnDArgument : "var_4" "wave_message_timer"
-	/// @DnDArgument : "var_5" "wave"
+	/// @DnDArgument : "var_5" "enemies_remaining"
 	with(obj_gamemanager) {
-	enemies_remaining = 5;
+	wave = 1;
 	has_won = false;
 	has_lost = false;
 	game_active = true;
 	wave_message_timer = 0;
-	wave = 1;
+	enemies_remaining = 4 + wave;
 	
 	}
 
@@ -119,14 +119,14 @@ function wave_cleared() {	/// @DnDAction : YoYo Games.Common.If_Variable
 		/// @DnDParent : 4420BE72
 		/// @DnDArgument : "expr" "1"
 		/// @DnDArgument : "expr_relative" "1"
-		/// @DnDArgument : "expr_1" "5"
+		/// @DnDArgument : "expr_1" "4 + wave"
 		/// @DnDArgument : "expr_2" "game_get_speed(gamespeed_fps)"
 		/// @DnDArgument : "var" "wave"
 		/// @DnDArgument : "var_1" "enemies_remaining"
 		/// @DnDArgument : "var_2" "wave_message_timer"
 		with(obj_gamemanager) {
 		wave += 1;
-		enemies_remaining = 5;
+		enemies_remaining = 4 + wave;
 		wave_message_timer = game_get_speed(gamespeed_fps);
 		
 		}

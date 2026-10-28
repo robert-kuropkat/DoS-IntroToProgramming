@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     {
         if (!GameManager.gameActive) return;
 
-        transform.Translate(Vector3.down * enemySpeed * Time.deltaTime);
+        transform.Translate(Vector3.down * (enemySpeed + (GameManager.wave - 1) * 0.05f) * Time.deltaTime);
         if (transform.position.y < -6f)
         {
             GameManager.RegisterEscape();

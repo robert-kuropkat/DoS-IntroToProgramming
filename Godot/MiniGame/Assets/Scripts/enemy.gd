@@ -15,7 +15,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not get_node("../GameManager").game_active: 
 		return
-	position.y += enemy_speed * delta 
+	position.y += (enemy_speed + ((get_node("../GameManager").wave - 1) * 0.05)) * delta 
+	#position.y += enemy_speed  * delta 
 	if position.y > 700: 
 		escaped.emit()
 		queue_free()

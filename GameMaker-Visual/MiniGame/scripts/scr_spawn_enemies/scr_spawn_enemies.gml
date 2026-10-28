@@ -14,9 +14,11 @@ function spawn_enemies() {	/// @DnDAction : YoYo Games.Common.Temp_Variable
 	/// @DnDAction : YoYo Games.Loops.Repeat
 	/// @DnDVersion : 1
 	/// @DnDHash : 45FF1B09
+	/// @DnDApplyTo : {obj_gamemanager}
 	/// @DnDParent : 1F2B6254
-	/// @DnDArgument : "times" "5"
-	repeat(5){	/// @DnDAction : YoYo Games.Common.Variable
+	/// @DnDArgument : "times" "4 + wave"
+	with(obj_gamemanager) {
+	repeat(4 + wave){	/// @DnDAction : YoYo Games.Common.Variable
 		/// @DnDVersion : 1
 		/// @DnDHash : 3B80FFF3
 		/// @DnDParent : 45FF1B09
@@ -29,13 +31,13 @@ function spawn_enemies() {	/// @DnDAction : YoYo Games.Common.Temp_Variable
 		/// @DnDVersion : 1
 		/// @DnDHash : 6677FEAC
 		/// @DnDParent : 45FF1B09
-		/// @DnDArgument : "xpos" "50+enemy_count*200"
+		/// @DnDArgument : "xpos" "50 - (50 * obj_gamemanager.wave) + enemy_count * 200"
 		/// @DnDArgument : "ypos" "80"
 		/// @DnDArgument : "var" "new_enemy"
 		/// @DnDArgument : "var_temp" "1"
 		/// @DnDArgument : "objectid" "obj_enemy"
 		/// @DnDSaveInfo : "objectid" "obj_enemy"
-		var new_enemy = instance_create_layer(50+enemy_count*200, 80, "Instances", obj_enemy);
+		var new_enemy = instance_create_layer(50 - (50 * obj_gamemanager.wave) + enemy_count * 200, 80, "Instances", obj_enemy);
 	
 		/// @DnDAction : YoYo Games.Common.Apply_To
 		/// @DnDVersion : 1
@@ -68,4 +70,5 @@ function spawn_enemies() {	/// @DnDAction : YoYo Games.Common.Temp_Variable
 				/// @DnDArgument : "colour" "c_white"
 				/// @DnDArgument : "alpha" "false"
 				image_blend = c_white & $ffffff;}
-		}}}
+		}}
+	}}

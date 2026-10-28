@@ -1,11 +1,11 @@
 function spawn_enemies(){
 	
 	for ( var enemy_count   = 0; 
-              enemy_count   < 5; 
+              enemy_count   < 4 + obj_gamemanager.wave; 
 	          enemy_count++
 	) 
     { 
-		var new_enemy = instance_create_layer( 250 + enemy_count * 200
+		var new_enemy = instance_create_layer( 250 - (50 * obj_gamemanager.wave) + enemy_count * 200
 											 , 80
 											 , "Instances"
 											 , obj_enemy

@@ -10,10 +10,10 @@ func _process(_delta: float) -> void:
 	pass
 	
 func spawn_enemies(): 
-	for enemy_count in range(5): 
+	for enemy_count in range(4 + $GameManager.wave): 
 		var new_enemy := enemy_scene.instantiate() 
 		enemies_remaining += 1
-		new_enemy.position = Vector2(150 + enemy_count * 200, 50) 
+		new_enemy.position = Vector2(225- (50 * $GameManager.wave) + enemy_count * 170, 50) 
 		if enemy_count % 2 == 0: 
 			new_enemy.modulate = Color(0.8, 0.1, 0.2) 
 		else: 

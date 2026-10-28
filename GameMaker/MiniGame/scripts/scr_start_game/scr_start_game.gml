@@ -3,7 +3,7 @@ function start_game(){
 	
 	obj_gamemanager.__dnd_score        = 0; 
 	obj_gamemanager.__dnd_lives        = 3; 
-	obj_gamemanager.enemies_remaining  = 5; 
+	obj_gamemanager.enemies_remaining  = 4 + obj_gamemanager.wave; 
 	obj_gamemanager.wave               = 1;
 	obj_gamemanager.wave_message_timer = 0;
 	obj_gamemanager.has_won            = false; 
@@ -23,7 +23,7 @@ function wave_cleared()
 		audio_play_sound(sfx_win, 1, false);
 	} else { 
 		obj_gamemanager.wave               += 1; 
-		obj_gamemanager.enemies_remaining   = 5; 
+		obj_gamemanager.enemies_remaining   = 4 + obj_gamemanager.wave; 
 		obj_gamemanager.wave_message_timer  = game_get_speed(gamespeed_fps); 
 		audio_play_sound(sfx_wave, 1, false);
 		spawn_enemies(); 

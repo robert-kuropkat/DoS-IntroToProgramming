@@ -6,7 +6,7 @@ if      (  alarm[0] > 0
                          { sprite_index = spr_enemy_flash; } 
 else if ( alarm[0] > 0 ) { sprite_index = Sprite_Enemy;}
 
-y += enemy_speed;
+y += enemy_speed + ((obj_gamemanager.wave - 1) * 0.05);
 if (y > room_height + 50) 
 { 
 	obj_gamemanager.__dnd_lives       -= 1; 

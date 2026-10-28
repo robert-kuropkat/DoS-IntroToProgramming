@@ -24,10 +24,10 @@ func _input(event):
 func start_game(): 
 	for old_enemy in get_tree().get_nodes_in_group("enemies"): 
 		old_enemy.queue_free() 
-	enemies_remaining = 5 
+	wave              = 1
+	enemies_remaining = 4 + wave 
 	lives             = 3 
 	score             = 0 
-	wave              = 1
 	game_active = true 
 	get_node("../WinText").hide() 
 	get_node("../LoseText").hide() 
@@ -68,7 +68,7 @@ func wave_cleared():
 		$WinSound.play() 
 	else: 
 		wave += 1 
-		enemies_remaining = 5 
+		enemies_remaining = 4 + wave 
 		update_hud() 
 		$WaveSound.play()
 		get_parent().call_deferred("spawn_enemies") 
