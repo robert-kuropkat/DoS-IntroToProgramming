@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 6f;
+    public float     speed = 6f;
     public AudioClip hitSound;
-    private float flashTimer;
+    private float    flashTimer;
 
     void Start()
     {
         GetComponent<SpriteRenderer>().color = Color.yellow;
-        transform.localScale *= 1.3f;
-        flashTimer = 0.1f;
+        transform.localScale                *= 1.3f;
+        flashTimer                           = 0.1f;
     }
 
     void Update()
@@ -31,13 +31,13 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (  other.CompareTag("Enemy")
+           && other.enabled)
         {
             other.enabled = false; 
             Enemy enemy   = other.GetComponent<Enemy>();
-            AudioSource.PlayClipAtPoint(hitSound, Camera.main.transform.position, 1.0f);
-            GameManager.RegisterKill();
-            //Destroy(other.gameObject);
+            AudioSource.PlayClipAtPoint(hitSound, Camera.main.transform.position);
+            GameManager.RegisterKill(enemy.pointValue);
             enemy.StartCoroutine(enemy.HandleHit());
             Destroy(gameObject);
         }
