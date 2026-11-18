@@ -33,7 +33,8 @@ public class Shield : MonoBehaviour
             spriteRenderer.color = damageColors[colorIndex]; 
         } 
         
-        if (hitsRemaining <= 0) Destroy(gameObject);
+        //if (hitsRemaining <= 0) Destroy(gameObject);
+        if (hitsRemaining <= 0) gameObject.SetActive(false);
     }
 
     // Called by GameManager.ResetGame() - shields are pre-placed in the scene, 

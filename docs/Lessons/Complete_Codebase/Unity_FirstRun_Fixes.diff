@@ -1,0 +1,576 @@
+Unity First-Run Test Plan Review - Code Diffs
+==============================================
+Apply these by hand against your own project's scripts (paths/line numbers
+will differ from yours - match on the surrounding code shown in each hunk).
+Full corrected files are in Unity_Complete_Codebase.docx; this is just the
+deltas, to target the changes faster.
+
+
+=== FOURTH-PASS FIXES (apply these on top of all passes below) ===
+
+--- Formation speed fine-tuning (wave 2 too slow to start) ---
+Reported from actual play: wave 2's march read as too slow/too easy at the
+start, but the speed it eventually escalates to after enough step-downs felt
+right. Raising the START without changing anything else would also raise
+that eventual ceiling proportionally (moveSpeed * speedRampPerEdge^N scales
+with the start for the same N) - a maxMoveSpeed cap decouples the two.
+
+@@ FormationController.cs, fields @@
+-    [SerializeField] private        float moveSpeed        = 3f;
++    [SerializeField] private        float moveSpeed        = 4.5f; // raised again - 3 was still too slow to read as an immediate threat
++    [SerializeField] private        float maxMoveSpeed      = 7f;  // NEW - the ceiling moveSpeed can never escalate past
+     [SerializeField] private        float speedRampPerEdge  = 1.2f;
+
+@@ FormationController.cs, the hitEdge block at the end of Update() @@
+         if (hitEdge)
+         {
+             direction  *= -1;
+-            moveSpeed  *= speedRampPerEdge;
++            moveSpeed  = Mathf.Min(moveSpeed * speedRampPerEdge, maxMoveSpeed); // NEW - same ramp, but capped
+         }
+
+  IMPORTANT - Unity Inspector gotcha: changing a [SerializeField]'s default
+  value in the .cs file does NOT retroactively update a component that
+  already exists in your scene with the OLD value serialized. If your
+  FormationController's Move Speed field in the Inspector still shows 1.5 or
+  3 after applying this, that's why - type the new value in by hand, or
+  click the component's gear icon (top-right) and choose Reset. This is the
+  actual reason wave 2 read as too slow even after the Test 26 fix below:
+  the component had been created before that fix, so the Inspector kept the
+  original 1.5 regardless of what the script's default said.
+
+--- Bonus enemy now "disappears" entirely when leftovers are cleared early ---
+No code change here - just a clarification. The bonus enemy's vertical
+overtake of the regular row (see bonusSpeedMultiplier, Test 38-40) is driven
+by it reaching its OWN edge check roughly bonusSpeedMultiplier times as often
+as the regular group, which means it also steps down that much more often.
+If it isn't visibly passing the regular row by roughly the midpoint of a
+typical wave, raise bonusSpeedMultiplier; if it passes almost immediately,
+lower it. 1.8 is a starting point, not a verified-correct number.
+
+--- Shield regression: destroyed shield doesn't come back on restart ---
+Reported from actual play - a shield reduced to 0 hits never reappeared on
+Restart (R), even though it used to. Cause: Shield.cs's OnTriggerEnter2D was
+calling Destroy(gameObject) instead of gameObject.SetActive(false) once
+hitsRemaining reached 0. The whole reset design (see Shield.cs's own class
+note) depends on a depleted shield being DEACTIVATED, not destroyed -
+GameManager.ResetGame()'s FindObjectsByType<Shield>(FindObjectsInactive.
+Include) can only find and reset a GameObject that still exists, just
+inactive. Destroying it removes it from the scene entirely, so there's
+nothing left to find or reactivate.
+
+@@ Shield.cs, OnTriggerEnter2D() @@
+-        if (hitsRemaining <= 0) Destroy(gameObject);
++        if (hitsRemaining <= 0) gameObject.SetActive(false);
+
+--- EnemySpawner.cs merge artifact: wave ending early / score jumping by 500 ---
+Not a bug in this reference material - a hand-applied-diff artifact. If your
+project's SpawnEnemies() has the bonus-enemy-spawning block INSIDE the
+enemy-spawning for-loop (rather than once, after it), it fires once per
+regular enemy instead of once per wave - 5 extra coroutine calls on Wave 2,
+each spawning a duplicate bonus enemy at the exact same position, stacked
+invisibly on top of each other. None of those duplicates are counted in
+enemiesRemaining, so killing a few of the stack (which LOOKS like one gold
+enemy) drains the counter to 0 early, ending the wave with real enemies
+still on screen - and inflates the score by 50 points per extra duplicate
+killed (500 points = all 10 of them). Compare your SpawnEnemies() against
+the THIRD-PASS version above line by line - specifically, the whole
+"if (hasBonusEnemy) { ...StartCoroutine... }" block must appear exactly
+ONCE, after the for-loop's closing brace, not inside it.
+
+
+=== THIRD-PASS FIXES (apply these on top of the first and second passes below) ===
+(this section went through FOUR revisions during the same pass, each fixing a
+problem the previous one actually caused in real play - what's below is the
+FINAL version; if you applied an earlier copy, replace it entirely with this)
+
+--- Bonus enemy redesign (Test 38-40) ---
+Problems found across the earlier revisions, all reported from actual play:
+(1) isBonus exempted the bonus enemy from Enemy.cs's "formation moves its own
+members" guard, so it fell through to Enemy.cs's own lane-descent Update()
+and visibly traveled straight down instead of side to side; (2) it was
+colored gold correctly in code, but still looked red the whole time it was
+alive (see the separate color note below); (3) an attempt to keep it
+"behind" the row by excluding it from the group's own edge check and
+clamping its position meant direction never reversed if it ended up the only
+enemy left alive - it got stuck pinned against the boundary; (4) a later
+attempt folded it fully into the group's shared direction/edge-check/step-
+down cycle, which fixed the stuck bug but introduced a new one - it visibly
+paused its sideways motion and dropped straight down every time ANYONE
+reached an edge, including itself (far more often than the rest of the group,
+since it's the fast one), which read as "stopping" rather than smoothly
+sweeping back and forth.
+
+The version below solves "start behind the row" with a short SPAWN DELAY
+(not a spatial offset), and then makes the bonus enemy's movement completely
+INDEPENDENT of the group once it exists - its own direction, its own edge
+bounce, never waiting on or affecting the regular formation's own cycle.
+That's what lets it move smoothly and continuously, pass the rest of the row
+whenever its speed carries it there, and never get stuck - it never depends
+on any other enemy, alive or not, to tell it when to reverse.
+
+@@ EnemySpawner.cs, SpawnEnemies() @@
+     public void SpawnEnemies()
+     {
+-        int count = 4 + GameManager.wave;
+-        for ( int enemyIndex = 0; enemyIndex < count; enemyIndex++ )
++        int  count         = 4 + GameManager.wave;
++        bool hasBonusEnemy = GameManager.wave % 2 == 0;
++        for ( int enemyIndex = 0; enemyIndex < count; enemyIndex++ )
+         {
+-            Vector3 pos = new Vector3((-3f - GameManager.wave) + enemyIndex * 2f, 4f, 0f);
++            // THIRD-PASS NEW - the bonus enemy (last slot, even waves only)
++            // doesn't spawn here anymore - see SpawnBonusEnemy() below.
++            if (hasBonusEnemy && enemyIndex == count - 1) continue;
++
++            Vector3 pos = new Vector3((-3f - GameManager.wave) + enemyIndex * 2f, 3.5f, 0f); // THIRD-PASS: row Y nudged from 4f to 3.5f, a touch more room underneath
+             GameObject newEnemy = Instantiate(enemyPrefab, pos, Quaternion.identity);
+             ... (speed, pointValue, striping - unchanged) ...
+-
+-            // bonus-enemy block REMOVED from here - see SpawnBonusEnemy() below
+         }
++
++        if (hasBonusEnemy)
++        {
++            Vector3 bonusPos = new Vector3((-3f - GameManager.wave) + (count - 1) * 2f, 3.5f, 0f);
++            StartCoroutine(SpawnBonusEnemy(bonusPos)); // THIRD-PASS NEW
++        }
++
+         GameManager.enemiesRemaining = count;
+     }
++
++    // THIRD-PASS NEW - spawning it a short delay after the rest of the row,
++    // at the SAME row height (not above it), is what makes it genuinely
++    // start behind the formation's action for a moment, without needing a
++    // permanent spatial offset that never closes.
++    [SerializeField] private float bonusSpawnDelay = 0.75f; // add this field too
++    private IEnumerator SpawnBonusEnemy(Vector3 pos)
++    {
++        yield return new WaitForSeconds(bonusSpawnDelay);
++        GameObject newEnemy    = Instantiate(enemyPrefab, pos, Quaternion.identity);
++        Enemy      enemyScript = newEnemy.GetComponent<Enemy>();
++        enemyScript.pointValue = 50;
++        enemyScript.isBonus    = true;
++        // THIRD-PASS NEW - see the separate color note below for why
++        SpriteRenderer sr = newEnemy.GetComponent<SpriteRenderer>();
++        sr.sprite = enemyScript.flashSprite; // the white sprite already wired on every Enemy prefab
++        sr.color  = new Color(1f, 0.85f, 0.2f); // gold
++    }
+
+--- Bonus enemy color (reported red instead of gold) ---
+This is a SEPARATE bug from the movement one above, also reported from actual
+play: the bonus enemy's SpriteRenderer.color was being set to gold correctly
+in every pass of this fix, but it still showed up red the whole time it was
+alive, only flashing gold for an instant when destroyed. Cause: SpriteRenderer
+.color MULTIPLIES a sprite's existing pixel colors - it can't add a channel
+that isn't there. If the Enemy prefab's base sprite is baked red (not a plain
+white/gray shape), no tint value can ever make it read as gold; a plain white
+sprite is required for color tinting to produce an arbitrary color. The hit
+flash (Enemy.cs's HandleHit(), see FIRST-PASS below) already swaps to
+flashSprite for an instant, which is why THAT moment showed true gold - if
+your Enemy prefab's flashSprite field is assigned to a white/uncolored
+sprite, that's the same asset the fix above now reuses as the bonus enemy's
+permanent base sprite, not just its hit-flash. If flashSprite isn't assigned,
+or points to a colored sprite itself, this fix won't produce gold either -
+assign it to a genuinely white sprite asset first.
+
+  (needs "using System.Collections;" added at the top, for IEnumerator)
+
+@@ Enemy.cs, Update() @@
+         if (!GameManager.gameActive) return;
+-        if (FormationController.formationModeActive && !isBonus) return; // SECOND-PASS (wrong): isBonus marched independently
++        if (FormationController.formationModeActive) return;            // THIRD-PASS: every formation member, bonus included, is moved by FormationController - nobody falls through to lane descent during a formation wave
+
+@@ Enemy.cs, fields @@
+     public bool           isBonus       = false;
++    public int            bonusDirection = 1; // THIRD-PASS NEW - the bonus enemy's OWN direction, independent of the group's
+
+@@ FormationController.cs, fields @@
+     [SerializeField] private        float moveSpeed        = 3f;
+     [SerializeField] private        float speedRampPerEdge  = 1.2f;
++    [SerializeField] private        float bonusSpeedMultiplier = 1.8f; // THIRD-PASS NEW - how much faster the bonus enemy marches
+     [SerializeField] private        float stepDown         = 0.5f;
+
+@@ FormationController.cs, Update() @@
+-        Enemy[]      allEnemies = FindObjectsByType<Enemy>();
+-        List<Enemy>  members    = new List<Enemy>();
+-        foreach (Enemy e in allEnemies) { if (!e.isBonus) members.Add(e); }
+-        if (members.Count == 0) return;
++        // THIRD-PASS: the bonus enemy is NOT part of this group's shared
++        // direction/edge-check/step-down cycle at all - it's handled in its
++        // own branch below, completely independently.
++        Enemy[] allEnemies = FindObjectsByType<Enemy>();
++        if (allEnemies.Length == 0) return;
+
+-        float dx = direction * moveSpeed * Time.deltaTime;
+         bool hitEdge = false;
+-        foreach (Enemy e in members)
++        foreach (Enemy e in allEnemies)
+         {
+-            float nextX = e.transform.position.x + dx;
++            if (e.isBonus) continue;
++            float nextX = e.transform.position.x + direction * moveSpeed * Time.deltaTime;
+             if (  nextX > xBoundary
+                || nextX < -xBoundary
+                ) hitEdge = true;
+         }
+
+-        foreach (Enemy e in members)
++        foreach (Enemy e in allEnemies)
+         {
+-            if (hitEdge) e.transform.Translate(Vector3.down * stepDown);
+-            else         e.transform.Translate(Vector3.right * dx);
++            if (e.isBonus)
++            {
++                // Own direction, own speed, own edge check and step-down -
++                // completely independent of the group above.
++                float bonusDx = e.bonusDirection * moveSpeed * bonusSpeedMultiplier * Time.deltaTime;
++                float nextX   = e.transform.position.x + bonusDx;
++                if (  nextX > xBoundary
++                   || nextX < -xBoundary
++                   )
++                {
++                    e.bonusDirection *= -1;
++                    e.transform.Translate(Vector3.down * stepDown);
++                }
++                else
++                {
++                    e.transform.Translate(Vector3.right * bonusDx);
++                }
++            }
++            else if (hitEdge)
++            {
++                e.transform.Translate(Vector3.down * stepDown);
++            }
++            else
++            {
++                e.transform.Translate(Vector3.right * direction * moveSpeed * Time.deltaTime);
++            }
+
+             if (e.transform.position.y < -6f)
+             {
+                 GameManager.RegisterEscape();
+                 Destroy(e.gameObject);
+             }
+         }
+
+  BUG EXPLAINED: two earlier revisions of this same pass each tied the bonus
+  enemy to the group's shared state in a different way, and each caused its
+  own reported problem. Excluding it from the edge check while clamping its
+  position (to keep it "behind" the row) meant direction never reversed if it
+  was the last enemy standing, since nothing else could ever trigger hitEdge -
+  it got stuck pinned at the edge. Folding it fully into the group's shared
+  cycle fixed that, but caused a new problem: it visibly paused its sideways
+  motion and dropped straight down every time ANYONE reached an edge,
+  including itself - far more often than the rest of the group, since it's
+  the fast one - which read as "stopping" rather than smoothly sweeping back
+  and forth. The version above avoids both: the bonus enemy gets its own
+  direction (bonusDirection) and its own edge check, entirely separate from
+  the group's. It can never get stuck (it never depends on any other enemy to
+  reverse it) and it's never paused waiting on the group's own step-down
+  timing - it just keeps moving, smoothly, on its own, the whole time it's
+  alive.
+
+--- Wave transitions leaving leftover enemies / premature wave end ---
+Reported from actual play: destroying the bonus enemy sometimes ended Wave 2
+and started Wave 3 while real Wave 2 enemies were still visibly on screen -
+which also meant enemiesRemaining could reach 0 (triggering a win) with
+enemies still alive. Two compounding causes, both fixed below:
+
+(1) GameManager's wave-advance code (Update(), the nextWaveRequested block)
+has never called EnemySpawner.ClearEnemies() before spawning the next wave -
+only ResetGame() (restart) did. In NORMAL play this was invisible, because by
+the time enemiesRemaining reached 0, every actual enemy really was gone. It
+only becomes visible once (2) below can leave an uncounted extra enemy alive.
+
+(2) The bonus enemy's spawn is delayed (SpawnBonusEnemy(), a Coroutine -
+see above). If a wave ends, or the player restarts, WHILE that delay is
+still counting down, ClearEnemies() only destroyed actual GameObjects - it
+never canceled the pending Coroutine. That Coroutine still fired later
+regardless, spawning an ORPHANED bonus enemy into whatever wave happened to
+be running by then. That enemy was never part of the new wave's own count,
+so killing it decremented enemiesRemaining for a wave that never actually
+accounted for it - ending that wave one kill early, with real enemies from
+it still on screen.
+
+@@ GameManager.cs, Update() @@
+         if (nextWaveRequested)
+         {
+             nextWaveRequested   = false;
++            spawner.ClearEnemies(); // NEW - guarantees nothing from the previous wave survives into the new one
+             spawner.SpawnEnemies();
+             waveMessageTimeLeft = 1f;
+         }
+
+@@ EnemySpawner.cs, fields @@
+     [SerializeField] private GameObject enemyPrefab;
+     [SerializeField] private float      bonusSpawnDelay = 0.75f;
++    private              Coroutine      bonusCoroutine; // NEW - tracked so ClearEnemies() can cancel a still-pending bonus spawn
+
+@@ EnemySpawner.cs, ClearEnemies() @@
+     public void ClearEnemies()
+     {
++        if (bonusCoroutine != null) // NEW - cancel a pending bonus spawn along with every actual GameObject
++        {
++            StopCoroutine(bonusCoroutine);
++            bonusCoroutine = null;
++        }
++
+         foreach (   GameObject oldEnemy
+                 in GameObject.FindGameObjectsWithTag("Enemy")
+                 )
+                 { Destroy(oldEnemy); }
+     }
+
+@@ EnemySpawner.cs, SpawnEnemies(), the bonus-enemy spawn @@
+         if (hasBonusEnemy)
+         {
+             Vector3 bonusPos = new Vector3((-3f - GameManager.wave) + (count - 1) * 2f, 3.5f, 0f);
+-            StartCoroutine(SpawnBonusEnemy(bonusPos));
++            bonusCoroutine = StartCoroutine(SpawnBonusEnemy(bonusPos)); // NEW - store the reference so ClearEnemies() can cancel it
+
+@@ EnemySpawner.cs, end of SpawnBonusEnemy() @@
+         sr.sprite = enemyScript.flashSprite;
+         sr.color  = new Color(1f, 0.85f, 0.2f);
++
++        bonusCoroutine = null; // NEW - finished normally, nothing left to cancel
+     }
+
+  Do this one even if you haven't hit the exact symptom yet - it's a correct
+  defensive fix either way, and costs nothing when there's nothing to clean up.
+
+
+=== SECOND-PASS FIXES (apply these on top of the first pass below) ===
+
+--- GameManager.cs - fixes the CS0618 obsolete-API warning ---
+If you already applied the first-pass ResetGame() diff below, your project
+currently has the FindObjectsSortMode version, which Unity now flags as
+obsolete. Replace it with:
+
+@@ ResetGame() @@
+         foreach (   Shield shield
+-                in FindObjectsByType<Shield>(FindObjectsInactive.Include, FindObjectsSortMode.None))
++                in FindObjectsByType<Shield>(FindObjectsInactive.Include))
+                 { shield.ResetShield(); }
+
+  (If you haven't applied the first-pass diff yet, just use this version -
+  FindObjectsByType<Shield>(FindObjectsInactive.Include) - directly; skip the
+  FindObjectsSortMode form entirely.)
+
+--- Canvas (Inspector only, no code) - fixes the off-screen HUD ---
+Likely cause: the Canvas's Canvas Scaler is set to its Unity default
+(Constant Pixel Size), which positions UI elements using raw pixel offsets
+from a corner - correct only at the exact resolution it was set up at. Once
+Default Screen Width/Height (Player Settings) or the Game view's aspect
+changed, those offsets no longer land in the same place, and can push the
+HUD partly or fully off-screen.
+  1. Select the Canvas GameObject, find its Canvas Scaler component.
+  2. Set UI Scale Mode = Scale With Screen Size.
+  3. Set Reference Resolution = 1280 x 720 (matches the Build Guide's
+     Default Screen Width/Height).
+  4. Set Screen Match Mode = Match Width Or Height, slider at 0.5.
+  5. Select ScoreText, LivesText, and WaveText one at a time and fix BOTH
+     their Anchor AND their Pivot (the X/Y fields right under the Anchor
+     Presets icon) - clicking an Anchor Preset alone does NOT move Pivot,
+     so if Pivot is still Unity's default (0.5, 0.5, dead center) while
+     Anchor is now a corner, Pos X/Y no longer means what it looks like it
+     means and the object straddles the edge instead of sitting inside it.
+     This IS what was happening: with anchor=top-left, pivot=center (0.5),
+     height=95, and Pos Y=-45, the box's top edge sits at -45+47.5=+2.5 -
+     just above the screen's top edge. Same story on all three (they all
+     shared Y=-45), and LivesText's width/Pos X put its right edge exactly
+     ON the screen edge (-120+120=0), leaving no room for its number.
+     Fix: in the Anchor Presets picker, hold Shift+Alt while clicking a
+     preset - this sets Anchor, Pivot to match, AND position together.
+     (Shift alone sets Pivot to match; Alt alone only sets position.) Or
+     type Pivot X/Y by hand to match Anchor (0 for left/top, 1 for
+     right/bottom, 0.5 for centered). Confirmed working values (Size is
+     unchanged from what you already had - not the bug, listed here just
+     so every number on these three objects is in one place):
+       ScoreText:  anchor top-left    pivot 0/1    size 370x95  Pos X  20  Pos Y -20
+       WaveText:   anchor top-center  pivot 0.5/1  size 370x95  Pos X   0  Pos Y -20
+       LivesText:  anchor top-right   pivot 1/1    size 240x95  Pos X -20  Pos Y -20
+     Once Pivot matches Anchor, dragging or editing Pos X/Y holds at any
+     resolution; it's only unreliable to drag-and-fix BEFORE Pivot matches
+     Anchor.
+
+
+=== FIRST-PASS FIXES (the original First-Run review) ===
+
+--- GameManager.cs ---
+
+@@ fields @@
+     public static float winLoseStartTime    = -1f; // fade the win/lose text in
++    public static float titleStartTime      = -1f; // NEW - title screen fades in too now
+
+     public static GameManager  instance;
+     public        EnemySpawner spawner;
++    public        FormationController formationController; // NEW - so ResetGame() can reset wave 2+'s march speed
+     public        AudioClip    lifeLostSound;
+
+@@ Start() @@
+         totalWaves        = 3;
+         winLoseStartTime  = -1f;
++        titleStartTime    = Time.time; // NEW
+         nextWaveRequested = false;
+
+@@ ResetGame() @@
+         // shields are pre-placed, not spawned, so a restart has to
+         // put each one back the way Shield.cs found it rather than re-instantiating it.
+         foreach (   Shield shield
+-                in FindObjectsByType<Shield>(FindObjectsInactive.Include)) // original bug: missing required argument
++                in FindObjectsByType<Shield>(FindObjectsInactive.Include)) // fixed, non-obsolete form - see SECOND-PASS note above for why
+                 { shield.ResetShield(); }
+
++        // NEW - undo FormationController's speed escalation on restart
++        if (formationController != null) { formationController.ResetFormation(); }
++
+         score               = 0;
+         lives               = 3;
+         wave                = 1;
+         enemiesRemaining    = 4 + wave;
+         waveMessageTimeLeft = 0f;
+         winLoseStartTime    = -1f;
++        titleStartTime      = -1f; // NEW
+         hasWon              = false;
+
+   BUG EXPLAINED: the very first version of this call had no second argument
+   at all and silently only matched ACTIVE objects - exactly the symptom
+   reported (partially-damaged shields reset fine, fully-destroyed ones never
+   came back). The fix is the current FindObjectsByType<T>(FindObjectsInactive)
+   overload shown above - not the FindObjectsByType<T>(FindObjectsInactive,
+   FindObjectsSortMode) overload, which compiles but is obsolete (CS0618) on
+   newer Unity versions. See the SECOND-PASS note at the top of this file.
+
+@@ OnGUI() @@
+-        if (!gameStarted)           { GUI.Label(new Rect(10, 10, 1400, 300), "Kestrel Watch\nPress SPACE to begin your watch", bigStyle); return; }
+-        if (hasWon || hasLost)
++        Rect bannerRect = new Rect(0, 10, Screen.width, 300); // NEW - was Rect(10, 10, 1400, 300)
++
++        if (!gameStarted)
++        {
++            float fadeInAlpha         = Mathf.Clamp01((Time.time - titleStartTime) / 0.5f); // NEW - title now fades in
++            Color c                   = bigStyle.normal.textColor;
++            bigStyle.normal.textColor = new Color(c.r, c.g, c.b, fadeInAlpha);
++            GUI.Label(bannerRect, "Kestrel Watch\nPress SPACE to begin your watch", bigStyle);
++            return;
++        }
++        if (hasWon || hasLost)
+         {
+             float fadeInAlpha         = Mathf.Clamp01((Time.time - winLoseStartTime) / 0.5f);
+             Color c                   = bigStyle.normal.textColor;
+             bigStyle.normal.textColor = new Color(c.r, c.g, c.b, fadeInAlpha);
+         }
+-        if (hasWon)                   GUI.Label(new Rect(10, 10, 1400, 300), "You Win! Press R to Restart"                   , bigStyle);
+-        if (hasLost)                  GUI.Label(new Rect(10, 10, 1400, 300), "Game Over - Press R to Restart"                , bigStyle);
+-        if (waveMessageTimeLeft > 0f) GUI.Label(new Rect(10, 10, 1400, 300), "Wave " + wave + "!"                            , bigStyle);
++        if (hasWon)                   GUI.Label(bannerRect, "You Win! Press R to Restart"      , bigStyle);
++        if (hasLost)                  GUI.Label(bannerRect, "Game Over - Press R to Restart"   , bigStyle);
++        if (waveMessageTimeLeft > 0f) GUI.Label(bannerRect, "Wave " + wave + "!"                , bigStyle);
+
+   BUG EXPLAINED: the old Rect always started at x=10 with a fixed 1400px
+   width, so GUIStyle.alignment=MiddleCenter only centered the text INSIDE
+   that box - the box itself wasn't centered on the real screen unless the
+   screen happened to be exactly 1420px wide. Spanning Screen.width fixes it.
+
+   INSPECTOR STEP REQUIRED: drag your FormationController GameObject into
+   GameManager's new "Formation Controller" field after this change compiles.
+
+
+--- EnemySpawner.cs ---
+
+@@ SpawnEnemies(), the bonus-enemy block @@
+             if (  enemyIndex           == count - 1
+                && GameManager.wave % 2 == 0
+                )
+             {
+                 enemyScript.pointValue = 50;
+                 enemyScript.speed     += 1f;
++                enemyScript.isBonus    = true;                     // NEW - exempt from FormationController's uniform movement
++                newEnemy.transform.position += new Vector3(0f, 1.5f, 0f); // NEW - spawn above the row
+                 newEnemy.GetComponent<SpriteRenderer>().color = new Color(1f, 0.85f, 0.2f);
+             }
+
+   BUG EXPLAINED: the bonus enemy's +1 speed was being set correctly, but
+   FormationController.cs moves every Enemy in a formation wave at ONE
+   shared group speed and never reads an individual Enemy's own speed field -
+   so the boost existed in code but could never be seen. isBonus exempts it
+   from the group movement (see Enemy.cs and FormationController.cs below) so
+   it marches under its own speed instead, and the Y offset keeps it from
+   visually overlapping the row while doing it.
+
+
+--- Enemy.cs ---
+
+@@ fields @@
+     public float          speed      = 1.5f;
+     public int            pointValue = 10;
++    public bool           isBonus    = false; // NEW
+     public GameObject     explosionPrefab;
+
+@@ Update() @@
+         if (!GameManager.gameActive) return;
+-        if (FormationController.formationModeActive) return; // formation moves its own members
++        if (FormationController.formationModeActive && !isBonus) return; // isBonus marches independently
+
+         transform.Translate(Vector3.down * speed * Time.deltaTime);
+
+
+--- FormationController.cs ---
+
+@@ fields @@
+-    [SerializeField] private        float moveSpeed = 1.5f;
+-    [SerializeField] private        float stepDown  = 0.5f;
+-    [SerializeField] private        float xBoundary = 8f;
+-                     private        int   direction = 1;
++    [SerializeField] private        float moveSpeed        = 3f;    // CHANGED - was 1.5f, read as too slow
++    [SerializeField] private        float speedRampPerEdge  = 1.2f; // NEW - multiplier applied each time it hits an edge
++    [SerializeField] private        float stepDown         = 0.5f;
++    [SerializeField] private        float xBoundary        = 8f;
++                     private        int   direction        = 1;
++                     private        float startingMoveSpeed; // NEW
+
++    void Start() { startingMoveSpeed = moveSpeed; } // NEW
+
+@@ Update() @@
+-        Enemy[] members = FindObjectsByType<Enemy>();
+-        if (members.Length == 0) return;
++        // NEW - isBonus enemies march on their own (see Enemy.cs); only
++        // regular formation members are moved as one uniform group here.
++        Enemy[]      allEnemies = FindObjectsByType<Enemy>();
++        List<Enemy>  members    = new List<Enemy>();
++        foreach (Enemy e in allEnemies) { if (!e.isBonus) members.Add(e); }
++        if (members.Count == 0) return;
+
+@@ end of Update(), the hitEdge block @@
+-        if (hitEdge) direction *= -1;
++        if (hitEdge)
++        {
++            direction  *= -1;
++            moveSpeed  *= speedRampPerEdge; // NEW - each advance is a little faster than the last
++        }
+     }
++
++    // NEW - called by GameManager.ResetGame()
++    public void ResetFormation()
++    {
++        moveSpeed = startingMoveSpeed;
++        direction = 1;
++    }
+
+
+--- Inspector-only changes (no code diff - do these in the Unity Editor) ---
+
+  * Bullet prefab's Rigidbody2D Body Type: change from Dynamic (Gravity Scale
+    0) to KINEMATIC. This matches Lesson 4's own Teacher's Key and every
+    other Rigidbody2D in the project (Shield, PowerUp) - Dynamic was the one
+    inconsistent one, for no functional reason (Bullet moves itself via
+    Translate(), same as everything else).
+  * Bullet prefab's Tag: set to "Bullet" (new tag - not read by any
+    CompareTag() yet, added for consistency/future-proofing; see the
+    Complete Codebase's "Required Tags & Layers" section).
+  * Main Camera: confirm Orthographic, Size 4.5, and the Game view's aspect
+    locked to 16:9 - needed for PlayerMovement's xBoundary=8/yBoundary=4.5
+    clamp to land exactly on the visible screen edge with no gap (Test 23).
+  * Canvas: see the SECOND-PASS section at the top of this file for the
+    Canvas Scaler / anchor fix for the off-screen HUD.

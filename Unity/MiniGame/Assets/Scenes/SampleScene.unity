@@ -380,6 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   spawner: {fileID: 1119941175}
+  formationController: {fileID: 910543353}
   lifeLostSound: {fileID: 8300000, guid: 899b385a52ddc1d49af81531658b0001, type: 3}
   gameOverSound: {fileID: 8300000, guid: b235eb43c6bc90947b8d7f62e82c421b, type: 3}
   gameStartSound: {fileID: 8300000, guid: 7f3f1cad124a8904586779e99ca154f4, type: 3}
@@ -856,7 +857,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -919,11 +920,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1586769896}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 753.2479, y: 678.57}
-  m_SizeDelta: {x: 298.1747, y: 82.8575}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -20, y: -20}
+  m_SizeDelta: {x: 240, y: 95}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &558180711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1288,11 +1289,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1586769896}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1060.081, y: 578.99}
-  m_SizeDelta: {x: 395.6194, y: 79.8499}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -20}
+  m_SizeDelta: {x: 370, y: 95}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &619680594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1395,9 +1396,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4223e837c3a487f49b6d3ab2abe6c687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FormationController
-  moveSpeed: 1.5
+  moveSpeed: 4.5
+  maxMoveSpeed: 7
+  speedRampPerEdge: 1.2
   stepDown: 0.5
   xBoundary: 8
+  bonusSpeedMultiplier: 3
 --- !u!4 &910543354
 Transform:
   m_ObjectHideFlags: 0
@@ -1643,6 +1647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemyPrefab: {fileID: 8246432354861797040, guid: 64f46f2909d460f44a81d657764d5dd8, type: 3}
+  bonusSpawnDelay: 0.75
 --- !u!1 &1184621998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,12 +1869,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1912,8 +1917,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2136064001}
-  - {fileID: 558180710}
   - {fileID: 619680593}
+  - {fileID: 558180710}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1953,11 +1958,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1586769896}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1082.3099, y: 678.57}
-  m_SizeDelta: {x: 324.0528, y: 82.857}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 20, y: -20}
+  m_SizeDelta: {x: 370, y: 95}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &2136064002
 MonoBehaviour:
   m_ObjectHideFlags: 0

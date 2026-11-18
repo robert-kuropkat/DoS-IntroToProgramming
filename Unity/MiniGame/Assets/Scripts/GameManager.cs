@@ -16,14 +16,17 @@ public class GameManager : MonoBehaviour
     public static float waveMessageTimeLeft = 0f;
     public static int   startFrame          = -1; // the frame Space started the game - see Player.cs
     public static float winLoseStartTime    = -1f;
+    public static float titleStartTime      = -1f; // NEW - title screen fades in too now
 
-    public static GameManager  instance;
-    public        EnemySpawner spawner;
-    public        AudioClip    lifeLostSound;
-    public        AudioClip    gameOverSound;
-    public        AudioClip    gameStartSound;
-    public        AudioClip    winSound;
-    public        AudioClip    waveClip;
+
+    public static GameManager         instance;
+    public        EnemySpawner        spawner;
+    public        FormationController formationController; // NEW - so ResetGame() can reset wave 2+'s march speed
+    public        AudioClip           lifeLostSound;
+    public        AudioClip           gameOverSound;
+    public        AudioClip           gameStartSound;
+    public        AudioClip           winSound;
+    public        AudioClip           waveClip;
 
     void Awake() { instance = this; }
 
@@ -35,6 +38,7 @@ public class GameManager : MonoBehaviour
         score             = 0;
         totalWaves        = 3;
         winLoseStartTime  = -1f;
+        titleStartTime    = Time.time; // NEW
         nextWaveRequested = false;
         hasWon            = false;
         hasLost           = false;
@@ -67,6 +71,7 @@ public class GameManager : MonoBehaviour
         if (nextWaveRequested)
         {
             nextWaveRequested   = false;
+            spawner.ClearEnemies(); // NEW - guarantees nothing from the previous wave survives into the new one
             spawner.SpawnEnemies();
             waveMessageTimeLeft = 1f;
         }
@@ -130,7 +135,10 @@ public class GameManager : MonoBehaviour
         // put each one back the way Shield.cs found it rather than re-instantiating it.
         foreach (   Shield shield 
                 in FindObjectsByType<Shield>(FindObjectsInactive.Include)) 
+                //in FindObjectsByType<Shield>(FindObjectsInactive.Include, FindObjectsSortMode.None))
                 { shield.ResetShield(); }
+        // NEW - undo FormationController's speed escalation on restart
+        if (formationController != null) { formationController.ResetFormation(); }
 
         score               = 0;
         lives               = 3;
@@ -138,6 +146,7 @@ public class GameManager : MonoBehaviour
         enemiesRemaining    = 4 + wave;
         waveMessageTimeLeft = 0f;
         winLoseStartTime    = -1f;
+        titleStartTime      = -1f; // NEW
         hasWon              = false;
         hasLost             = false;
         nextWaveRequested   = false;
@@ -157,15 +166,28 @@ public class GameManager : MonoBehaviour
         bigStyle.alignment        = TextAnchor.MiddleCenter;
         bigStyle.normal.textColor = Color.yellow;
 
-        if (!gameStarted)           { GUI.Label(new Rect(10, 10, 1400, 300), "Kestrel Watch\nPress SPACE to begin your watch", bigStyle); return; }
+        // if (!gameStarted)           { GUI.Label(new Rect(10, 10, 1400, 300), "Kestrel Watch\nPress SPACE to begin your watch", bigStyle); return; }
+        Rect bannerRect = new Rect(0, 10, Screen.width, 300); // NEW - was Rect(10, 10, 1400, 300)
+        
+        if (!gameStarted)
+        {
+            float fadeInAlpha = Mathf.Clamp01((Time.time - titleStartTime) / 0.5f); // NEW - title now fades in
+            Color c = bigStyle.normal.textColor;
+            bigStyle.normal.textColor = new Color(c.r, c.g, c.b, fadeInAlpha);
+            GUI.Label(bannerRect, "Kestrel Watch\nPress SPACE to begin your watch", bigStyle);
+            return;
+        }
         if (hasWon || hasLost)
         {
             float fadeInAlpha         = Mathf.Clamp01((Time.time - winLoseStartTime) / 0.5f);
             Color c                   = bigStyle.normal.textColor;
             bigStyle.normal.textColor = new Color(c.r, c.g, c.b, fadeInAlpha);
         }
-        if (hasWon)                   GUI.Label(new Rect(10, 10, 1400, 300), "You Win! Press R to Restart"                   , bigStyle);
-        if (hasLost)                  GUI.Label(new Rect(10, 10, 1400, 300), "Game Over - Press R to Restart"                , bigStyle);
-        if (waveMessageTimeLeft > 0f) GUI.Label(new Rect(10, 10, 1400, 300), "Wave " + wave + "!"                            , bigStyle);
+        //if (hasWon)                   GUI.Label(new Rect(10, 10, 1400, 300), "You Win! Press R to Restart"                   , bigStyle);
+        //if (hasLost)                  GUI.Label(new Rect(10, 10, 1400, 300), "Game Over - Press R to Restart"                , bigStyle);
+        //if (waveMessageTimeLeft > 0f) GUI.Label(new Rect(10, 10, 1400, 300), "Wave " + wave + "!"                            , bigStyle);
+        if (hasWon)                   GUI.Label(bannerRect, "You Win! Press R to Restart"   , bigStyle);
+        if (hasLost)                  GUI.Label(bannerRect, "Game Over - Press R to Restart", bigStyle);
+        if (waveMessageTimeLeft > 0f) GUI.Label(bannerRect, "Wave " + wave + "!"            , bigStyle);
     }
 }
